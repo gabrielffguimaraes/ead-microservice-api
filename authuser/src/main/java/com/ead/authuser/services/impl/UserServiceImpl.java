@@ -8,10 +8,12 @@ import com.ead.authuser.repository.UserRepository;
 import com.ead.authuser.services.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
@@ -89,5 +91,30 @@ public class UserServiceImpl implements UserService {
     public boolean existsByEmail(String email) {
         var userModel = userRepository.findByEmail(email);
         return userModel.isPresent();
+    }
+
+    /**
+     * @param userId
+     * @param userDto
+     * @return UserModel
+     * must update a user partially in database
+     */
+    @Override
+    public UserModel update(UUID userId, UserDto userDto) {
+        var user = findById(userId).get();
+        user.setFullName(userDto.getFullName());
+        user.setPhoneNumber(userDto.getPhoneNumber());
+        user.setCpf(userDto.getCpf());
+        user.setLastUpdateDate(LocalDateTime.now(ZoneId.of("America/Sao_Paulo")));
+        return userRepository.save(user);
+    }
+
+    /**
+     * @param pageable
+     * @return
+     */
+    @Override
+    public Page<UserModel> findAll(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 }

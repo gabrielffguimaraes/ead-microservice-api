@@ -14,3 +14,6 @@ spring:
     properties:
       hibernate:
         show_sql: true
+  jackson:
+    mapper:
+      DEFAULT_VIEW_INCLUSION: true
