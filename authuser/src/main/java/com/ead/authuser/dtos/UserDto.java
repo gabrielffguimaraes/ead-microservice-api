@@ -1,12 +1,18 @@
 package com.ead.authuser.dtos;
 
+import com.ead.authuser.models.UserAddressModel;
+import com.ead.authuser.validation.CepConstraint;
 import com.ead.authuser.validation.UsernameConstraint;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
+import org.hibernate.validator.constraints.br.CPF;
 
+import javax.persistence.Embedded;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -28,6 +34,7 @@ public class UserDto {
     @JsonView({UserView.ResponsePost.class,UserView.RegistrationPost.class})
     private String username;
     @NotBlank(groups = UserView.RegistrationPost.class)
+    @Email(groups = UserView.RegistrationPost.class,message = "Email inválido .")
     @JsonView({UserView.ResponsePost.class,UserView.RegistrationPost.class})
     private String email;
     @NotBlank(groups = {UserView.RegistrationPost.class,UserView.PasswordPut.class})
@@ -41,10 +48,16 @@ public class UserDto {
     private String fullName;
     @JsonView({UserView.ResponsePost.class,UserView.RegistrationPost.class,UserView.UserPut.class})
     private String phoneNumber;
+
+    @CPF(groups = UserView.RegistrationPost.class)
     @JsonView({UserView.ResponsePost.class,UserView.RegistrationPost.class,UserView.UserPut.class})
     private String cpf;
 
     @NotBlank(groups = UserView.ImagePut.class)
     @JsonView({UserView.ImagePut.class})
     private String imageUrl;
+
+    @CepConstraint(groups = UserView.RegistrationPost.class,message = "Cep Inválido")
+    @JsonView({UserView.RegistrationPost.class,UserView.ResponsePost.class})
+    private String cep;
 }

@@ -15,9 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -33,21 +31,14 @@ public class UserController {
     @JsonView(UserDto.UserView.ResponsePost.class)
     public ResponseEntity<Page<UserDto>> getAllUsers(@PageableDefault(page = 0, size = 10, sort = "userId", direction = Sort.Direction.ASC)
                                                      Pageable pageable) {
-
-        List<UserDto> list = userService.findAll(pageable)
+        var list = userService.findAll(pageable).getContent();
+        List<UserDto> listDto = Arrays.asList(modelMapper.map(list,UserDto[].class));
+        /*List<UserDto> list = userService.findAll(pageable)
                 .stream()
                 .map(item -> modelMapper.map(item,UserDto.class))
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(new PageImpl<>(list));
-        /*
-        return ResponseEntity.ok(userModelPage);
-        List<UserDto> list = userService.findAll()
-                .stream()
-                .map(item -> modelMapper.map(item,UserDto.class))
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(list);*/
+                .collect(Collectors.toList());*/
+        return ResponseEntity.ok(new PageImpl<>(listDto));
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable(value = "id") UUID userId) {
         Optional<UserModel> userModelOptional = userService.findById(userId);

@@ -1,15 +1,20 @@
 package com.ead.authuser.models;
 
+import com.ead.authuser.dtos.UserDto;
 import com.ead.authuser.enums.UserStatus;
 import com.ead.authuser.enums.UserType;
+import com.ead.authuser.validation.UsernameConstraint;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -52,4 +57,17 @@ public class UserModel implements Serializable {
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime lastUpdateDate;
+
+    @Column(length = 8)
+    private String cep;
+
+    /*
+    @Embedded
+    UserAddressModel addressModel;*/
+
+    /*
+    @JsonIgnoreProperties("userModel")
+    @OneToMany(mappedBy = "userModel")
+    private List<UserAdressModel> adresses;*/
 }
+
