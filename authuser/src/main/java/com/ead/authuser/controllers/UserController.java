@@ -3,6 +3,7 @@ package com.ead.authuser.controllers;
 import com.ead.authuser.dtos.UserDto;
 import com.ead.authuser.models.UserModel;
 import com.ead.authuser.services.UserService;
+import com.ead.authuser.specification.SpecificationTemplate;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +30,12 @@ public class UserController {
     ModelMapper modelMapper;
     @GetMapping
     @JsonView(UserDto.UserView.ResponsePost.class)
-    public ResponseEntity<Page<UserDto>> getAllUsers(@PageableDefault(page = 0, size = 10, sort = "userId", direction = Sort.Direction.ASC)
-                                                     Pageable pageable) {
-        var list = userService.findAll(pageable).getContent();
-        List<UserDto> listDto = Arrays.asList(modelMapper.map(list,UserDto[].class));
-        /*List<UserDto> list = userService.findAll(pageable)
-                .stream()
-                .map(item -> modelMapper.map(item,UserDto.class))
-                .collect(Collectors.toList());*/
-        return ResponseEntity.ok(new PageImpl<>(listDto));
+    public ResponseEntity<Page<UserDto>> getAllUsers(SpecificationTemplate.UserSpec spec,
+                                                     @PageableDefault(page=1 ,size=20 , sort = "userId" , direction = Sort.Direction.DESC)
+                                                     Pageable pageable) {;
+        var list = userService.findAll(spec,pageable);
+        List<UserDto> listDto = Arrays.asList(modelMapper.map(list.getContent(),UserDto[].class));
+        return ResponseEntity.ok(new PageImpl<>(listDto,pageable,list.getTotalElements()));
     }
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable(value = "id") UUID userId) {
