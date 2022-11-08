@@ -1,17 +1,17 @@
 package com.ead.authuser.services.impl;
 
+import com.ead.authuser.controllers.filters.UserFilter;
 import com.ead.authuser.dtos.UserDto;
 import com.ead.authuser.enums.UserStatus;
 import com.ead.authuser.enums.UserType;
 import com.ead.authuser.models.UserModel;
 import com.ead.authuser.repository.UserRepository;
 import com.ead.authuser.services.UserService;
+import com.ead.authuser.specification.UserSpec;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -115,7 +115,8 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public Page<UserModel> findAll(Specification<UserModel> spec, Pageable pageable) {
-        return userRepository.findAll(spec,pageable);
+    public Page<UserModel> findAll(UserFilter userFilter, Pageable pageable) {
+        var userSpec = UserSpec.filter(userFilter);
+        return userRepository.findAll(userSpec,pageable);
     }
 }

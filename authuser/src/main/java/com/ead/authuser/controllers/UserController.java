@@ -1,9 +1,9 @@
 package com.ead.authuser.controllers;
 
+import com.ead.authuser.controllers.filters.UserFilter;
 import com.ead.authuser.dtos.UserDto;
 import com.ead.authuser.models.UserModel;
 import com.ead.authuser.services.UserService;
-import com.ead.authuser.specification.SpecificationTemplate;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "*",maxAge = 3600)
@@ -30,10 +29,11 @@ public class UserController {
     ModelMapper modelMapper;
     @GetMapping
     @JsonView(UserDto.UserView.ResponsePost.class)
-    public ResponseEntity<Page<UserDto>> getAllUsers(SpecificationTemplate.UserSpec spec,
-                                                     @PageableDefault(page=1 ,size=20 , sort = "userId" , direction = Sort.Direction.DESC)
-                                                     Pageable pageable) {;
-        var list = userService.findAll(spec,pageable);
+    public ResponseEntity<Page<UserDto>> getAllUsers(UserFilter userFilter,
+                                                     @PageableDefault(page=0 ,size=20 , sort = "userId" , direction = Sort.Direction.DESC)
+                                                     Pageable pageable) {
+
+        var list = userService.findAll(userFilter,pageable);
         List<UserDto> listDto = Arrays.asList(modelMapper.map(list.getContent(),UserDto[].class));
         return ResponseEntity.ok(new PageImpl<>(listDto,pageable,list.getTotalElements()));
     }

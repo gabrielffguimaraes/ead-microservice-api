@@ -7,7 +7,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,6 +18,9 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name="tb_users")
@@ -58,6 +64,14 @@ public class UserModel implements Serializable {
     @Column(length = 8)
     private String cep;
 
+    @PrePersist
+    public void prePersist() {
+        this.creationDate = LocalDateTime.now();
+        this.lastUpdateDate = LocalDateTime.now();
+        this.phoneNumber = "5521973550867";
+        this.userType = UserType.STUDENT;
+        this.userStatus = UserStatus.ACTIVE;
+    }
     /*
     @Embedded
     UserAddressModel addressModel;*/
