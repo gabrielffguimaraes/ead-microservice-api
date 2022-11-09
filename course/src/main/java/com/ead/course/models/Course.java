@@ -5,10 +5,7 @@ import com.ead.course.enums.CourseStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -16,6 +13,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -25,12 +23,15 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @NamedEntityGraph(
-        name = Course.MODULE_GRAPH,
+        name = "Course.modules",
         includeAllAttributes=true,
-        attributeNodes = @NamedAttributeNode(value = "modules", subgraph = Module.LESSON_GRAPH),
+        attributeNodes = {
+                @NamedAttributeNode(value = "modules", subgraph = "Lesson.lessons"),
+                @NamedAttributeNode(value = "modules", subgraph = "Lesson.lessons"),
+        },
         subgraphs = {
             @NamedSubgraph(
-                name = Module.LESSON_GRAPH,
+                name = "Lesson.lessons",
                 attributeNodes = @NamedAttributeNode(value = "lessons")
             )
         }
@@ -38,7 +39,9 @@ import java.util.UUID;
 @Table(name = "tb_courses")
 public class Course implements Serializable {
     private static final long serialVersionUID = 1L;
-    public static final String MODULE_GRAPH = "Module.moduleId";
+
+    public static final String LESSON_GRAPH = "Lesson.modules";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID courseId;
@@ -59,6 +62,8 @@ public class Course implements Serializable {
     @JsonIgnoreProperties("course")
     @OneToMany(mappedBy = "course",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
     @Fetch(FetchMode.SUBSELECT)
-    private List<Module> modules;
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<Module> modules;
 
 }

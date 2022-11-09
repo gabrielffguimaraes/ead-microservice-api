@@ -41,4 +41,5 @@ public class Lesson implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "moduleId",referencedColumnName = "moduleId")
     private Module module;
+
 }
