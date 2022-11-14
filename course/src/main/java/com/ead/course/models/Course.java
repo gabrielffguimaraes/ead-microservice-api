@@ -23,10 +23,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @NamedEntityGraph(
-        name = "Course.modules",
         includeAllAttributes=true,
         attributeNodes = {
-                @NamedAttributeNode(value = "modules", subgraph = "Lesson.lessons"),
                 @NamedAttributeNode(value = "modules", subgraph = "Lesson.lessons"),
         },
         subgraphs = {
@@ -65,5 +63,17 @@ public class Course implements Serializable {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<Module> modules;
+
+
+    @ManyToMany
+    @Fetch(FetchMode.JOIN)
+    @JoinTable(
+            name = "tb_course_schedule",
+            joinColumns = @JoinColumn(name = "courseId"),
+            inverseJoinColumns = @JoinColumn(name = "scheduleId")
+    )
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<Schedule> schedule;
 
 }
