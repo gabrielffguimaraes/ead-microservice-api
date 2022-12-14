@@ -11,7 +11,9 @@ public class CourseSpecification {
     public static Specification<Course> filter(String description) {
         return (root,query,criteriaBuilder) -> {
           var predicates = new ArrayList<>();
-          predicates.add(criteriaBuilder.like(root.get("description"),"%"+description+"%"));
+          if(description != null & description != "") {
+              predicates.add(criteriaBuilder.like(root.get("name"), "%" + description + "%"));
+          }
           return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
         };
     }

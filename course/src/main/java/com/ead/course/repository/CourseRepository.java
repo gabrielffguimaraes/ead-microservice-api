@@ -14,6 +14,5 @@ import java.util.UUID;
 
 public interface CourseRepository extends JpaRepository<Course, UUID> , JpaSpecificationExecutor<Course> {
     @EntityGraph(value = "Course", type = EntityGraph.EntityGraphType.FETCH)
-    @Query("select c from Course c inner join c.modules m")
     Page<Course> findAll(Specification spec, Pageable page);
 }
