@@ -42,7 +42,7 @@ public class Module implements Serializable {
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIgnoreProperties("module")
-    @OneToMany(mappedBy = "module",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "module",fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<Lesson> lessons;

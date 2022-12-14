@@ -48,7 +48,8 @@ public class Course implements Serializable {
     private String imageUrl;
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime creationDate;
-    private String lastUpdateDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime lastUpdateDate;
     @Column
     @Enumerated(EnumType.STRING)
     private CourseStatus courseStatus;
@@ -63,7 +64,6 @@ public class Course implements Serializable {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<Module> modules;
-
 
     @ManyToMany
     @Fetch(FetchMode.JOIN)

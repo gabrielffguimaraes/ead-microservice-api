@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cb4d595-3b86-4eb7-bbe1-8157f4d66adc" name="Changes" comment="join multiple queries @NamedEntityGraph" />
+    <list default="true" id="1cb4d595-3b86-4eb7-bbe1-8157f4d66adc" name="Changes" comment="join multiple queries @NamedEntityGraph">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/models/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/models/UserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/controller/CourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/models/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/models/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/models/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/models/Module.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/resources/application.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +43,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"></component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;147603311881c1cd1c930fe0d0dd8fb4&quot;
+  }
+}</component>
   <component name="RunManager" selected="Spring Boot.CourseApplication">
     <configuration name="AuthuserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="authuser" />
@@ -72,6 +88,8 @@
       <workItem from="1667764739796" duration="7568000" />
       <workItem from="1667958088788" duration="1785000" />
       <workItem from="1667996562618" duration="58000" />
+      <workItem from="1670633093828" duration="5414000" />
+      <workItem from="1670974305445" duration="6121000" />
     </task>
     <task id="LOCAL-00001" summary="join multiple queries @NamedEntityGraph">
       <created>1667878069428</created>
