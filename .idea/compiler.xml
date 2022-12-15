@@ -6,6 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="course" />
+        <module name="notification" />
+        <module name="authuser" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

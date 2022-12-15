@@ -1,5 +1,7 @@
 package com.ead.course.mock;
 
+import com.ead.course.enums.CourseLevel;
+import com.ead.course.enums.CourseStatus;
 import com.ead.course.models.*;
 import com.ead.course.models.Module;
 import com.ead.course.repository.*;
@@ -36,9 +38,9 @@ public class app implements ApplicationRunner {
         var sabado =  this.scheduleRepository.save(Schedule.builder().day("Sabado").build());
         var domingo = this.scheduleRepository.save(Schedule.builder().day("Domingo").build());
 
-        var course1 = this.courseRepository.save(Course.builder().name("Curso de algoritmos").description("Curso base 1").build());
-        var course2 = this.courseRepository.save(Course.builder().name("Curso de pitagoras").description("Curso base 2").build());
-        var course3 = this.courseRepository.save(Course.builder().name("teste").description("teste").build());
+        var course1 = this.courseRepository.save(Course.builder().name("Curso de algoritmos").courseStatus(CourseStatus.CONCLUDED).courseLevel(CourseLevel.INTERMEDIARY).description("Curso base 1").build());
+        var course2 = this.courseRepository.save(Course.builder().name("Curso de pitagoras").courseStatus(CourseStatus.CONCLUDED).courseLevel(CourseLevel.ADVANCED).description("Curso base 2").build());
+        var course3 = this.courseRepository.save(Course.builder().name("teste").courseStatus(CourseStatus.INPROGRESS).courseLevel(CourseLevel.BEGINNER).description("teste").build());
 
         var module1 = Module.builder().title("Modulo 1").description("Modulo de exatas").build();
         var module2 = Module.builder().title("Modulo 2").description("Modulo de humanas").build();
