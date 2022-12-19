@@ -12,6 +12,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Set;
 import java.util.UUID;
 
@@ -45,9 +46,9 @@ public class Course implements Serializable {
     private String name;
     private String description;
     private String imageUrl;
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy HH:mm:ss")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime creationDate;
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy HH:mm:ss")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime lastUpdateDate;
     @Column
     @Enumerated(EnumType.STRING)
@@ -75,4 +76,9 @@ public class Course implements Serializable {
     @ToString.Exclude
     private Set<Schedule> schedule;
 
+    @PrePersist
+    public void prePersist() {
+        this.setCreationDate(LocalDateTime.now());
+        this.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
+    }
 }
