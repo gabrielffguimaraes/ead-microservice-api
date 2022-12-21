@@ -5,7 +5,10 @@ import com.ead.authuser.models.UserModel;
 import com.ead.authuser.repository.UserRepository;
 import com.ead.authuser.services.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,10 +22,13 @@ import java.time.ZoneId;
 import java.util.Optional;
 import java.util.UUID;
 
+@Slf4j
 @RestController
 @CrossOrigin(origins = "*" , maxAge = 3600)
 @RequestMapping("/auth")
 public class AuthenticationController {
+
+
     @Autowired
     UserService userService;
 
@@ -100,5 +106,14 @@ public class AuthenticationController {
             userRepository.save(user);
             return ResponseEntity.status(HttpStatus.OK).body("Image updated successful .");
         }
+    }
+    @GetMapping("/")
+    public String index() {
+        log.trace("TRACE");
+        log.debug("DEBUG");
+        log.info("INFO");
+        log.warn("WARN");
+        log.error("ERROR");
+        return "loggin spring boot";
     }
 }

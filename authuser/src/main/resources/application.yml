@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/ead_authuser
     username: postgres
-    password: 12345678
+    password: 123456
   jpa:
     hibernate:
       ddl-auto: 'create-drop'
@@ -18,3 +18,12 @@ spring:
     mapper:
       DEFAULT_VIEW_INCLUSION: true
 viacep: 'viacep.com.br/ws'
+
+logging:
+  level:
+    com.ead: TRACE
+    root: INFO
+    org.springframework.web: INFO
+    org.hibernate: INFO
+
+
