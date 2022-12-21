@@ -4,36 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ba4c535-123e-473b-a89c-59111d214405" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_annotations_23_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/controller/ModuleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/dto/ModuleDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/specification/ModuleSpecification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/23c31a98-1669-4a5b-b068-84745d380db2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/23c31a98-1669-4a5b-b068-84745d380db2/storage_v2/_src_/database/ead_course.8hSQcw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/23c31a98-1669-4a5b-b068-84745d380db2/storage_v2/_src_/database/ead_course.8hSQcw/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/23c31a98-1669-4a5b-b068-84745d380db2/storage_v2/_src_/database/ead_course.8hSQcw/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/23c31a98-1669-4a5b-b068-84745d380db2/storage_v2/_src_/database/ead_course.8hSQcw/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/23c31a98-1669-4a5b-b068-84745d380db2/storage_v2/_src_/database/ead_course.8hSQcw/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/23c31a98-1669-4a5b-b068-84745d380db2/storage_v2/_src_/database/ead_course.8hSQcw/schema/public.abK9xQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/23c31a98-1669-4a5b-b068-84745d380db2/storage_v2/_src_/database/postgres.edMnLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/23c31a98-1669-4a5b-b068-84745d380db2/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/23c31a98-1669-4a5b-b068-84745d380db2/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/23c31a98-1669-4a5b-b068-84745d380db2/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/course/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/controller/CourseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/mock/app.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/mock/app.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/models/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/models/Module.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/repository/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/repository/CourseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/repository/ModuleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/repository/ModuleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/specification/CourseSpecification.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/specification/CourseSpecification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/resources/application.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="6ba4c535-123e-473b-a89c-59111d214405" name="Changes" comment="update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,8 +83,16 @@
       <option name="presentableId" value="Default" />
       <updated>1671060643246</updated>
       <workItem from="1671060645800" duration="167000" />
-      <workItem from="1671060854758" duration="10415000" />
+      <workItem from="1671060854758" duration="10699000" />
     </task>
+    <task id="LOCAL-00001" summary="update">
+      <created>1671073225675</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1671073225676</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,5 +108,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
 </project>
