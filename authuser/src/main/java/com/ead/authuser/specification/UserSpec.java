@@ -1,18 +1,22 @@
 package com.ead.authuser.specification;
 
 import com.ead.authuser.controllers.filters.UserFilter;
+import com.ead.authuser.models.UserCourseModel;
 import com.ead.authuser.models.UserModel;
 import org.springframework.data.jpa.domain.Specification;
 
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 public class UserSpec {
     public static Specification<UserModel> filter(UserFilter params) {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
+
             if(params.getCpf() != null) {
                 predicates.add(criteriaBuilder.equal(root.get("cpf"), params.getCpf()));
             }
@@ -23,6 +27,13 @@ public class UserSpec {
                 predicates.add(criteriaBuilder.like(root.get("email"),"%"+params.getEmail()+"%"));
             }
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+        };
+    }
+    public static Specification<UserModel> filterUserByCourseId(UUID courseId) {
+        return (root,query,builder) -> {
+            query.distinct(true);
+            Join<UserModel,UserCourseModel> userCourseModel = root.join("usersCourse");
+            return builder.equal(userCourseModel.get("courseId"), courseId);
         };
     }
 }

@@ -22,5 +22,5 @@ public interface UserService {
 
     UserModel update(UUID userId, UserDto userDto);
 
-    Page<UserModel> findAll(UserFilter userFilter, Pageable pageable);
+    Page<UserModel> findAll(UserFilter userFilter, UUID courseId, Pageable pageable);
 }

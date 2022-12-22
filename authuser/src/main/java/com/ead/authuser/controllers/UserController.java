@@ -31,9 +31,10 @@ public class UserController {
     @JsonView(UserDto.UserView.ResponsePost.class)
     public ResponseEntity<Page<UserDto>> getAllUsers(UserFilter userFilter,
                                                      @PageableDefault(page=0 ,size=20 , sort = "userId" , direction = Sort.Direction.DESC)
+                                                     @RequestParam(required = false) UUID courseId,
                                                      Pageable pageable) {
 
-        var list = userService.findAll(userFilter,pageable);
+        var list = userService.findAll(userFilter,courseId,pageable);
         List<UserDto> listDto = Arrays.asList(modelMapper.map(list.getContent(),UserDto[].class));
         return ResponseEntity.ok(new PageImpl<>(listDto,pageable,list.getTotalElements()));
     }

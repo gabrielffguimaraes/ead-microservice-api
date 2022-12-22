@@ -4,15 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ba4c535-123e-473b-a89c-59111d214405" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/config/DateConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/config/DateConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course/src/main/resources/static/config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="6ba4c535-123e-473b-a89c-59111d214405" name="Changes" comment="join multiple queries @NamedEntityGraph">
+      <change afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/models/UserCourseModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/repository/UserCourseRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/services/UserCourseService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/services/impl/UserCourseServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/models/CourseUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/controllers/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/controllers/AuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authuser/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/course/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/models/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/models/UserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/services/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/services/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/specification/UserSpec.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/specification/UserSpec.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/models/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/models/Course.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +71,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Spring Boot.AuthuserApplication">
+  <component name="RunManager" selected="Spring Boot.CourseApplication">
     <configuration name="AuthuserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="authuser" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ead.authuser.AuthuserApplication" />
@@ -96,8 +100,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.AuthuserApplication" />
         <item itemvalue="Spring Boot.CourseApplication" />
+        <item itemvalue="Spring Boot.AuthuserApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -111,6 +115,7 @@
       <updated>1671060643246</updated>
       <workItem from="1671060645800" duration="167000" />
       <workItem from="1671060854758" duration="10699000" />
+      <workItem from="1671679015334" duration="1279000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1671073225675</created>

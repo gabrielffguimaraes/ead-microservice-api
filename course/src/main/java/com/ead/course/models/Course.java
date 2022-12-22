@@ -5,6 +5,7 @@ import com.ead.course.enums.CourseStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -81,4 +82,7 @@ public class Course implements Serializable {
         this.setCreationDate(LocalDateTime.now());
         this.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
     }
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    private Set<CourseUser> courseUsers;
 }

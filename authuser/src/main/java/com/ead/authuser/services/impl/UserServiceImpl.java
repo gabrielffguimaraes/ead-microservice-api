@@ -115,8 +115,9 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public Page<UserModel> findAll(UserFilter userFilter, Pageable pageable) {
+    public Page<UserModel> findAll(UserFilter userFilter,UUID courseId, Pageable pageable) {
         var userSpec = UserSpec.filter(userFilter);
-        return userRepository.findAll(userSpec,pageable);
+        var filterCourseSpec = UserSpec.filterUserByCourseId(courseId);
+        return userRepository.findAll(userSpec.and(filterCourseSpec),pageable);
     }
 }

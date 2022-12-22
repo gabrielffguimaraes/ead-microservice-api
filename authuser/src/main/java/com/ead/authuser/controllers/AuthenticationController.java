@@ -7,16 +7,12 @@ import com.ead.authuser.services.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Optional;
@@ -51,7 +47,12 @@ public class AuthenticationController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Error : Email is Already Taken !");
         };
 
-        UserDto userResponse =  modelMapper.map(userService.save(userDto),UserDto.class);
+        var savedUser = userService.save(userDto);
+        UserDto userResponse =  modelMapper.map(savedUser,UserDto.class);
+
+        log.debug("POST registerUser userModel saved {}",savedUser.getUserId());
+        log.debug("User saved successfully userId {}",savedUser.getUserId());
+
         return ResponseEntity.status(HttpStatus.CREATED).body(userResponse);
     }
 
