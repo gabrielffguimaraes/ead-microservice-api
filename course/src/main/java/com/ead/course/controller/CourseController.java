@@ -1,5 +1,6 @@
 package com.ead.course.controller;
 
+import com.ead.course.dto.CourseDto;
 import com.ead.course.enums.CourseLevel;
 import com.ead.course.enums.CourseStatus;
 import com.ead.course.models.Course;
@@ -9,17 +10,20 @@ import com.ead.course.specification.CourseSpecification;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.*;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Tag(name = "Cursos",description = "Endpoint responsável por manter cursos")
@@ -33,12 +37,16 @@ public class CourseController {
 
     @Operation(summary = "Listar cursos .")
     @GetMapping
-    public ResponseEntity<?> findAll(@PageableDefault(page=0,size=10,sort = {"courseId"},direction = Sort.Direction.DESC) Pageable page,
-                                     @RequestParam(value="name", required=false) String name,
-                                     @RequestParam(value="courseLevel" , required=false)CourseLevel courseLevel,
-                                     @RequestParam(value="courseStatus" , required=false)CourseStatus courseStatus
+    public ResponseEntity<Page<CourseDto>> findAll(@PageableDefault(page=0,size=10,sort = {"courseId"},direction = Sort.Direction.DESC) Pageable page,
+                                                   @RequestParam(value="name", required=false) String name,
+                                                   @RequestParam(value="courseLevel" , required=false)CourseLevel courseLevel,
+                                                   @RequestParam(value="courseStatus" , required=false)CourseStatus courseStatus,
+                                                   @RequestParam(required = false) UUID userId
                                      ) {
-        return ResponseEntity.ok(this.courseRepository.findAll(CourseSpecification.filter(courseLevel,courseStatus,name),page));
+        var result = this.courseRepository.findAll(CourseSpecification.filter(courseLevel,courseStatus,name,userId),page);
+        List courses = result.stream().map(course -> new ModelMapper().map(course, CourseDto.class)).collect(Collectors.toList());
+        var response = new PageImpl<CourseDto>(courses,page,result.getTotalElements());
+        return ResponseEntity.ok(response);
     }
 
     @Operation(summary = "Deletar cursos")

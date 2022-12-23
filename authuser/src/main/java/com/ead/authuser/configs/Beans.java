@@ -1,4 +1,4 @@
-package com.ead.authuser.config;
+package com.ead.authuser.configs;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

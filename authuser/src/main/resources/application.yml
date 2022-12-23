@@ -17,6 +17,8 @@ spring:
   jackson:
     mapper:
       DEFAULT_VIEW_INCLUSION: true
+    deserialization:
+      fail-on-unknown-properties: false
 viacep: 'viacep.com.br/ws'
 
 logging:

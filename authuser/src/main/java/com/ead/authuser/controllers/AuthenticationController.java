@@ -98,7 +98,7 @@ public class AuthenticationController {
                                                  @Validated(UserDto.UserView.ImagePut.class)
                                                  UserDto userDto) {
         Optional<UserModel> userModel = userService.findById(userId);
-        if(!userModel.isPresent()) {
+        if(userModel.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error : User not found .");
         } else {
             var user = userModel.get();
@@ -107,14 +107,5 @@ public class AuthenticationController {
             userRepository.save(user);
             return ResponseEntity.status(HttpStatus.OK).body("Image updated successful .");
         }
-    }
-    @GetMapping("/")
-    public String index() {
-        log.trace("TRACE");
-        log.debug("DEBUG");
-        log.info("INFO");
-        log.warn("WARN");
-        log.error("ERROR");
-        return "loggin spring boot";
     }
 }

@@ -31,9 +31,14 @@ public class UserSpec {
     }
     public static Specification<UserModel> filterUserByCourseId(UUID courseId) {
         return (root,query,builder) -> {
+            var predicates = new ArrayList<>();
             query.distinct(true);
-            Join<UserModel,UserCourseModel> userCourseModel = root.join("usersCourse");
-            return builder.equal(userCourseModel.get("courseId"), courseId);
+            Join<UserModel,UserCourseModel> userCourseRoot = root.join("usersCourse");
+
+            if(courseId != null) {
+                predicates.add(builder.equal(userCourseRoot.get("courseId"), courseId));
+            }
+            return builder.and(predicates.toArray(new Predicate[predicates.size()]));
         };
     }
 }

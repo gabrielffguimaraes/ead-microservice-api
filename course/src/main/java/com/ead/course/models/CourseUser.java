@@ -1,7 +1,7 @@
 package com.ead.course.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +11,9 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "tb_courses_user")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CourseUser implements Serializable {
     private static long serialVersionUID = 1L;
 
@@ -21,4 +24,7 @@ public class CourseUser implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "courseId",referencedColumnName = "courseId")
     Course course;
+
+    @Column(nullable = false)
+    UUID userId;
 }

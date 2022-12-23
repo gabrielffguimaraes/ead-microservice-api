@@ -9,9 +9,10 @@ import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class CourseSpecification {
-    public static Specification<Course> filter(CourseLevel courseLevel, CourseStatus courseStatus,String name) {
+    public static Specification<Course> filter(CourseLevel courseLevel, CourseStatus courseStatus, String name, UUID userId) {
         return (root,query,criteriaBuilder) -> {
           var predicates = new ArrayList<>();
           if(courseLevel != null) {
@@ -22,6 +23,9 @@ public class CourseSpecification {
           }
           if(name != null) {
               predicates.add(criteriaBuilder.like(root.get("name"),"%"+name+"%"));
+          }
+          if(userId != null) {
+              predicates.add(criteriaBuilder.equal(root.join("courseUsers").get("userId"),userId));
           }
           return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
         };

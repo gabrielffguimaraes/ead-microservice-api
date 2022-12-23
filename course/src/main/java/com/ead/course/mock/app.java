@@ -9,6 +9,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class app implements ApplicationRunner {
     private final CourseRepository courseRepository;
@@ -19,12 +21,15 @@ public class app implements ApplicationRunner {
 
     private final CourseScheduleRepository courseScheduleRepository;
 
-    public app(CourseRepository courseRepository, LessonRepository lessonRepository, ModuleRepository moduleRepository, ScheduleRepository scheduleRepository, CourseScheduleRepository courseScheduleRepository) {
+    private final CourseUserRepository courseUserRepository;
+
+    public app(CourseRepository courseRepository, LessonRepository lessonRepository, ModuleRepository moduleRepository, ScheduleRepository scheduleRepository, CourseScheduleRepository courseScheduleRepository, CourseUserRepository courseUserRepository) {
         this.courseRepository = courseRepository;
         this.lessonRepository = lessonRepository;
         this.moduleRepository = moduleRepository;
         this.scheduleRepository = scheduleRepository;
         this.courseScheduleRepository = courseScheduleRepository;
+        this.courseUserRepository = courseUserRepository;
     }
 
     @Override
@@ -68,5 +73,35 @@ public class app implements ApplicationRunner {
         this.courseScheduleRepository.save(CourseSchedule.builder().course(course2).schedule(terca).build());
         this.courseScheduleRepository.save(CourseSchedule.builder().course(course2).schedule(quinta).build());
 
+        var courseUser1 = CourseUser
+                .builder()
+                .userId(UUID.fromString("9eba3b56-9f59-4947-a7ea-dcd3ea54049c"))
+                .course(course1)
+                .build();
+        var courseUser2 = CourseUser
+                .builder()
+                .userId(UUID.fromString("9eba3b56-9f59-4947-a7ea-dcd3ea54049c"))
+                .course(course2)
+                .build();
+        var courseUser3 = CourseUser
+                .builder()
+                .userId(UUID.fromString("9eba3b56-9f59-4947-a7ea-dcd3ea54049c"))
+                .course(course3)
+                .build();
+        var courseUser4 = CourseUser
+                .builder()
+                .userId(UUID.fromString("5223771b-5d17-4134-b1e8-539df131f642"))
+                .course(course1)
+                .build();
+        var courseUser5 = CourseUser
+                .builder()
+                .userId(UUID.fromString("5223771b-5d17-4134-b1e8-539df131f642"))
+                .course(course2)
+                .build();
+        this.courseUserRepository.save(courseUser1);
+        this.courseUserRepository.save(courseUser2);
+        this.courseUserRepository.save(courseUser3);
+        this.courseUserRepository.save(courseUser4);
+        this.courseUserRepository.save(courseUser5);
     }
 }

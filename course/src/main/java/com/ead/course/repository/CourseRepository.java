@@ -11,6 +11,17 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import java.util.UUID;
 
 public interface CourseRepository extends JpaRepository<Course, UUID> , JpaSpecificationExecutor<Course> {
-    @EntityGraph(value = "Course", type = EntityGraph.EntityGraphType.FETCH)
+    @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, attributePaths = {
+            "modules",
+            "modules.lessons",
+            "schedule"
+    })
     Page<Course> findAll(Specification spec, Pageable page);
+
+    @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, attributePaths = {
+            "modules",
+            "modules.lessons",
+            "schedule"
+    })
+    long count(Specification<Course> filter);
 }
