@@ -5,30 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ba4c535-123e-473b-a89c-59111d214405" name="Changes" comment="join multiple queries @NamedEntityGraph">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/clients/UserClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/configs/RestTemplateConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/controllers/UserCourseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/controllers/dtos/CourseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/dtos/ResponsePageDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/dto/CourseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/repository/CourseUserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authuser/src/main/resources/application-test.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authuser/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/config/RestTemplateConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/controller/CourseUserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/dto/ResponsePagedDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/course/src/main/resources/application-prod.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/course/src/main/resources/application-test.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/course/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/config/Beans.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/configs/Beans.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/config/DateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/configs/DateConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/controllers/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/controllers/AuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/mock/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/mock/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/models/UserCourseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/models/UserCourseModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/specification/UserSpec.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/java/com/ead/authuser/specification/UserSpec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authuser/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authuser/src/test/java/com/ead/authuser/AuthuserApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/test/java/com/ead/authuser/AuthuserApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authuser/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authuser/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/authuser/src/main/resources/application-prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/course/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/controller/CourseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/mock/app.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/mock/app.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/models/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/models/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/models/CourseUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/models/CourseUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/repository/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/repository/CourseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/src/main/java/com/ead/course/specification/CourseSpecification.java" beforeDir="false" afterPath="$PROJECT_DIR$/course/src/main/java/com/ead/course/specification/CourseSpecification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course/src/main/resources/application.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,29 +52,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/gl-ki/OneDrive/Área de Trabalho/EAD-projeto-decoder-micheli-brito/authuser/src/main/java/com/ead/authuser/enums",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "spring.configuration.checksum": "147603311881c1cd1c930fe0d0dd8fb4"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/gl-ki/OneDrive/Área de Trabalho/EAD-projeto-decoder-micheli-brito/authuser/src/main/java/com/ead/authuser/enums&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;147603311881c1cd1c930fe0d0dd8fb4&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\gl-ki\OneDrive\Área de Trabalho\EAD-projeto-decoder-micheli-brito\authuser\src\main\java\com\ead\authuser\enums" />
@@ -96,7 +87,48 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AuthuserApplication">
+  <component name="RunManager" selected="Application.CourseApplication">
+    <configuration name="AuthuserApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ead.authuser.AuthuserApplication" />
+      <module name="authuser" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ead.authuser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CourseApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ead.course.CourseApplication" />
+      <module name="course" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ead.course.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthuserApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="authuser" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ead.authuser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ead.authuser" />
+      <option name="MAIN_CLASS_NAME" value="com.ead.authuser.AuthuserApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AuthuserApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="authuser" />
       <extension name="coverage">
@@ -109,19 +141,6 @@
       <option name="MAIN_CLASS_NAME" value="com.ead.authuser.AuthuserApplicationTests" />
       <option name="METHOD_NAME" value="contextLoads" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AuthuserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="authuser" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ead.authuser.AuthuserApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.ead.authuser.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -141,8 +160,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.AuthuserApplication" />
-        <item itemvalue="Spring Boot.CourseApplication" />
+        <item itemvalue="Application.CourseApplication" />
+        <item itemvalue="Application.AuthuserApplication" />
+        <item itemvalue="JUnit.AuthuserApplicationTests" />
         <item itemvalue="JUnit.AuthuserApplicationTests.contextLoads" />
       </list>
     </recent_temporary>
@@ -173,6 +193,18 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.validation:jakarta.validation-api" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.persistence:jakarta.persistence-api" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-commons" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.cloud:spring-cloud-context" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate.validator:hibernate-validator" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate:hibernate-core" />
+    <option featureType="com.intellij.configurationType" implementationName="SpringBootApplicationConfigurationType" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -187,5 +219,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
     <option name="LAST_COMMIT_MESSAGE" value="update" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/course/src/main/java/com/ead/course/CourseApplication.java</url>
+          <line>6</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
