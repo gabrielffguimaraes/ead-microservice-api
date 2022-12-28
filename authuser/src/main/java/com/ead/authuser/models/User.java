@@ -24,7 +24,7 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name="tb_users")
-public class UserModel implements Serializable {
+public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -66,7 +66,7 @@ public class UserModel implements Serializable {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "userModel", fetch = FetchType.LAZY)
-    Set<UserCourseModel> usersCourse;
+    Set<UserCourse> usersCourse;
 
     @PrePersist
     public void prePersist() {
@@ -78,7 +78,7 @@ public class UserModel implements Serializable {
     }
     /*
     @Embedded
-    UserAddressModel addressModel;*/
+    UserAddress addressModel;*/
 
     /*
     @JsonIgnoreProperties("userModel")

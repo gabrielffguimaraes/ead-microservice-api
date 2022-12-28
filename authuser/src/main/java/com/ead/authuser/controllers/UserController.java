@@ -1,8 +1,8 @@
 package com.ead.authuser.controllers;
 
-import com.ead.authuser.controllers.filters.UserFilter;
+import com.ead.authuser.filters.UserFilter;
 import com.ead.authuser.dtos.UserDto;
-import com.ead.authuser.models.UserModel;
+import com.ead.authuser.models.User;
 import com.ead.authuser.services.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.modelmapper.ModelMapper;
@@ -39,7 +39,7 @@ public class UserController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable(value = "id") UUID userId) {
-        Optional<UserModel> userModelOptional = userService.findById(userId);
+        Optional<User> userModelOptional = userService.findById(userId);
         if(userModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.OK).body(userModelOptional.get());
         } else {
@@ -49,7 +49,7 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable(value = "id") UUID userId) {
-        Optional<UserModel> user = userService.findById(userId);
+        Optional<User> user = userService.findById(userId);
         if(user.isPresent()) {
             userService.deleteById(user.get().getUserId());
             return ResponseEntity.status(HttpStatus.OK).body("User deleted succesful");

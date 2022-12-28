@@ -1,6 +1,6 @@
 package com.ead.authuser.repository;
 
-import com.ead.authuser.models.UserModel;
+import com.ead.authuser.models.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,9 +11,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserModel, UUID>, JpaSpecificationExecutor<UserModel> {
-    Optional<UserModel> findByUsername(String username);
-    Optional<UserModel> findByEmail(String email);
+public interface UserRepository extends JpaRepository<User, UUID>, JpaSpecificationExecutor<User> {
+    Optional<User> findByUsername(String username);
+    Optional<User> findByEmail(String email);
 
-    Page<UserModel> findAll(Pageable pageable);
+    Page<User> findAll(Pageable pageable);
 }

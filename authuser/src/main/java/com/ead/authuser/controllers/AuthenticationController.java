@@ -1,7 +1,7 @@
 package com.ead.authuser.controllers;
 
 import com.ead.authuser.dtos.UserDto;
-import com.ead.authuser.models.UserModel;
+import com.ead.authuser.models.User;
 import com.ead.authuser.repository.UserRepository;
 import com.ead.authuser.services.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -62,7 +62,7 @@ public class AuthenticationController {
                                              @RequestBody
                                              @JsonView(UserDto.UserView.UserPut.class)
                                              UserDto userDto) {
-        Optional<UserModel> userModel = userService.findById(userId);
+        Optional<User> userModel = userService.findById(userId);
         if(!userModel.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error : User not found .");
         }
@@ -76,7 +76,7 @@ public class AuthenticationController {
                                              @JsonView(UserDto.UserView.PasswordPut.class)
                                              @Validated(UserDto.UserView.PasswordPut.class)
                                              UserDto userDto) {
-        Optional<UserModel> userModel = userService.findById(userId);
+        Optional<User> userModel = userService.findById(userId);
         if(!userModel.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error : User not found .");
         } else if(!userModel.get().getPassword().equals(userDto.getOldPassword())) {
@@ -97,7 +97,7 @@ public class AuthenticationController {
                                                  @JsonView(UserDto.UserView.ImagePut.class)
                                                  @Validated(UserDto.UserView.ImagePut.class)
                                                  UserDto userDto) {
-        Optional<UserModel> userModel = userService.findById(userId);
+        Optional<User> userModel = userService.findById(userId);
         if(userModel.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error : User not found .");
         } else {

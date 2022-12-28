@@ -1,8 +1,8 @@
 package com.ead.authuser.specification;
 
-import com.ead.authuser.controllers.filters.UserFilter;
-import com.ead.authuser.models.UserCourseModel;
-import com.ead.authuser.models.UserModel;
+import com.ead.authuser.filters.UserFilter;
+import com.ead.authuser.models.User;
+import com.ead.authuser.models.UserCourse;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Join;
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 
 public class UserSpec {
-    public static Specification<UserModel> filter(UserFilter params) {
+    public static Specification<User> filter(UserFilter params) {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
@@ -29,11 +29,11 @@ public class UserSpec {
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }
-    public static Specification<UserModel> filterUserByCourseId(UUID courseId) {
+    public static Specification<User> filterUserByCourseId(UUID courseId) {
         return (root,query,builder) -> {
             var predicates = new ArrayList<>();
             query.distinct(true);
-            Join<UserModel,UserCourseModel> userCourseRoot = root.join("usersCourse");
+            Join<User, UserCourse> userCourseRoot = root.join("usersCourse");
 
             if(courseId != null) {
                 predicates.add(builder.equal(userCourseRoot.get("courseId"), courseId));

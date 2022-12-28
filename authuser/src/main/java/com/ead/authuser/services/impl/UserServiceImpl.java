@@ -1,10 +1,10 @@
 package com.ead.authuser.services.impl;
 
-import com.ead.authuser.controllers.filters.UserFilter;
+import com.ead.authuser.filters.UserFilter;
 import com.ead.authuser.dtos.UserDto;
 import com.ead.authuser.enums.UserStatus;
 import com.ead.authuser.enums.UserType;
-import com.ead.authuser.models.UserModel;
+import com.ead.authuser.models.User;
 import com.ead.authuser.repository.UserRepository;
 import com.ead.authuser.services.UserService;
 import com.ead.authuser.specification.UserSpec;
@@ -29,21 +29,21 @@ public class UserServiceImpl implements UserService {
 
 
     /**
-     * @return List<UserModel>
+     * @return List<User>
      * method should return a list of registered users
      */
     @Override
-    public List<UserModel> findAll() {
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
     /**
      * @param userId
-     * @return Optional<UserModel>
+     * @return Optional<User>
      * method must return a registered user filtered by id
      */
     @Override
-    public Optional<UserModel> findById(UUID userId) {
+    public Optional<User> findById(UUID userId) {
         return userRepository.findById(userId);
     }
 
@@ -58,12 +58,12 @@ public class UserServiceImpl implements UserService {
 
     /**
      * @param userDto
-     * @return UserModel
+     * @return User
      * method must save a new user
      */
     @Override
-    public UserModel save(UserDto userDto) {
-        var userModel = new UserModel();
+    public User save(UserDto userDto) {
+        var userModel = new User();
         BeanUtils.copyProperties(userDto, userModel);
         userModel.setUserType(UserType.STUDENT);
         userModel.setUserStatus(UserStatus.ACTIVE);
@@ -97,11 +97,11 @@ public class UserServiceImpl implements UserService {
     /**
      * @param userId
      * @param userDto
-     * @return UserModel
+     * @return User
      * must update a user partially in database
      */
     @Override
-    public UserModel update(UUID userId, UserDto userDto) {
+    public User update(UUID userId, UserDto userDto) {
         var user = findById(userId).get();
         user.setFullName(userDto.getFullName());
         user.setPhoneNumber(userDto.getPhoneNumber());
@@ -115,7 +115,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public Page<UserModel> findAll(UserFilter userFilter,UUID courseId, Pageable pageable) {
+    public Page<User> findAll(UserFilter userFilter, UUID courseId, Pageable pageable) {
         var userSpec = UserSpec.filter(userFilter);
         var filterCourseSpec = UserSpec.filterUserByCourseId(courseId);
         return userRepository.findAll(userSpec.and(filterCourseSpec),pageable);

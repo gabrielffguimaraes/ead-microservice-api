@@ -1,4 +1,4 @@
-package com.ead.authuser.controllers.filters;
+package com.ead.authuser.filters;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

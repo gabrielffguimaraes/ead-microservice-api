@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Data
 @Embeddable
-public class UserAddressModel {
+public class UserAddress {
 
     @Column(length = 8)
     private String cep;
@@ -16,5 +16,5 @@ public class UserAddressModel {
     /*@JsonIgnoreProperties("adresses")
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
-    UserModel userModel;*/
+    User userModel;*/
 }

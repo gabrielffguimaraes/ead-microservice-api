@@ -1,7 +1,10 @@
 package com.ead.authuser.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,7 +14,10 @@ import java.util.UUID;
 @Table(name = "tb_users_courses")
 @Builder
 @Entity
-public class UserCourseModel implements Serializable {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserCourse implements Serializable {
     private static long serialVersionUID = 1L;
 
     @Id
@@ -23,6 +29,6 @@ public class UserCourseModel implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "userId", referencedColumnName = "userId")
-    private UserModel userModel;
+    private User userModel;
 
 }

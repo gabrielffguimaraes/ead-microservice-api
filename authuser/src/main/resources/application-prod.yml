@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/ead_authuser
     username: postgres
-    password: 123456
+    password: 12345678
   jpa:
     hibernate:
       ddl-auto: 'create-drop'
@@ -28,4 +28,7 @@ logging:
     org.springframework.web: INFO
     org.hibernate: INFO
 
-
+ead:
+  api:
+    url:
+      course: http://localhost:8082/api/course

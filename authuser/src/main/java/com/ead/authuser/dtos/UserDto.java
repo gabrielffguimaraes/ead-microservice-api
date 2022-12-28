@@ -1,6 +1,5 @@
 package com.ead.authuser.dtos;
 
-import com.ead.authuser.models.UserAddressModel;
 import com.ead.authuser.validation.CepConstraint;
 import com.ead.authuser.validation.UsernameConstraint;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -8,11 +7,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.Embedded;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-import java.util.List;
 import java.util.UUID;
 
 @Data

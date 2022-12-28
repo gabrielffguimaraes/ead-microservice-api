@@ -1,9 +1,10 @@
 package com.ead.authuser.clients;
 
-import com.ead.authuser.controllers.dtos.CourseDto;
+import com.ead.authuser.dtos.CourseDto;
 import com.ead.authuser.dtos.ResponsePageDto;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,20 +14,19 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
 import java.util.UUID;
 
 @Component
 @Log4j2
-public class UserClient {
+public class CourseClient {
     @Autowired
     RestTemplate restTemplate;
-
-    private final String REQUEST_URI = "http://localhost:8082/api";
+    
+    @Value("${ead.api.url.course}")
+    private String REQUEST_URI;
     public Page<CourseDto> getAllCoursesByUser(UUID userId , Pageable pageable) {
-        log.info("Caindo aqui ..");
         Page<CourseDto> searchResult = null;
-        String url = REQUEST_URI + "/course?userId="+userId+"&page="+pageable.getPageNumber()+"&size="+
+        String url = REQUEST_URI + "?userId="+userId+"&page="+pageable.getPageNumber()+"&size="+
                 pageable.getPageSize()+"&sort="+pageable.getSort().toString().replaceAll(": ",",");
         log.debug("Request URL: {}",url);
         log.info("Request URL: {}",url);
@@ -41,5 +41,10 @@ public class UserClient {
         }
         log.info("Ending request /courses userId {}",userId);
         return searchResult;
+    }
+
+    public ResponseEntity<CourseDto> findCourseById(UUID courseId) {
+        String url = REQUEST_URI + "/" + courseId;
+        return new RestTemplate().exchange(url,HttpMethod.GET,null,CourseDto.class);
     }
 }

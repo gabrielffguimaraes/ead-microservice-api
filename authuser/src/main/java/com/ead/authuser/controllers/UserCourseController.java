@@ -1,8 +1,10 @@
 package com.ead.authuser.controllers;
 
 
-import com.ead.authuser.clients.UserClient;
-import com.ead.authuser.controllers.dtos.CourseDto;
+import com.ead.authuser.clients.CourseClient;
+import com.ead.authuser.dtos.CourseDto;
+import com.ead.authuser.dtos.UserCourseDto;
+import com.ead.authuser.services.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,11 +13,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @Log4j2
@@ -24,7 +25,13 @@ import java.util.UUID;
 public class UserCourseController {
 
     @Autowired
-    UserClient userClient;
+    CourseClient userClient;
+
+    private final UserService userService;
+
+    public UserCourseController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/users/{userId}/courses")
     public ResponseEntity<Page<CourseDto>> getAllCoursesById(@PageableDefault(
@@ -33,5 +40,15 @@ public class UserCourseController {
             page = 0,
             sort = "courseId") Pageable pageable, @PathVariable(value = "userId") UUID userId) {
         return ResponseEntity.status(HttpStatus.OK).body(userClient.getAllCoursesByUser(userId,pageable));
+    }
+
+
+    @PostMapping("/users/{userId}/courses/subscription")
+    public ResponseEntity<?> userSubscriptionInCourse(@PathVariable("userId") UUID userId,@RequestBody @Valid UserCourseDto userCourseDto) {
+        var user = this.userService.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found in database."));
+        if(user.existsByUserModelAAndCourseId(user,userCourseDto.getCourseId())) {
+
+        }
+        return null;
     }
 }
