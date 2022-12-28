@@ -4,6 +4,7 @@ package com.ead.authuser.controllers;
 import com.ead.authuser.clients.CourseClient;
 import com.ead.authuser.dtos.CourseDto;
 import com.ead.authuser.dtos.UserCourseDto;
+import com.ead.authuser.services.UserCourseService;
 import com.ead.authuser.services.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,11 @@ public class UserCourseController {
     CourseClient userClient;
 
     private final UserService userService;
+    private final UserCourseService userCourseService;
 
-    public UserCourseController(UserService userService) {
+    public UserCourseController(UserService userService, UserCourseService userCourseService) {
         this.userService = userService;
+        this.userCourseService = userCourseService;
     }
 
     @GetMapping("/users/{userId}/courses")
@@ -46,7 +49,7 @@ public class UserCourseController {
     @PostMapping("/users/{userId}/courses/subscription")
     public ResponseEntity<?> userSubscriptionInCourse(@PathVariable("userId") UUID userId,@RequestBody @Valid UserCourseDto userCourseDto) {
         var user = this.userService.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found in database."));
-        if(user.existsByUserModelAAndCourseId(user,userCourseDto.getCourseId())) {
+        if(userCourseService.existsByUserModelAAndCourseId(user,userCourseDto.getCourseId())) {
 
         }
         return null;
