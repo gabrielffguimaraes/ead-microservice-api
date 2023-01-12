@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Component
+
 public class Users implements ApplicationRunner {
     private final UserRepository userRepository;
     private final UserCourseRepository userCourseRepository;

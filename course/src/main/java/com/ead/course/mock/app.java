@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Component
+
 public class app implements ApplicationRunner {
     private final CourseRepository courseRepository;
     private final LessonRepository lessonRepository;

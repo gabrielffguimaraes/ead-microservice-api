@@ -4,6 +4,7 @@ import com.ead.course.enums.CourseLevel;
 import com.ead.course.enums.CourseStatus;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 @Data

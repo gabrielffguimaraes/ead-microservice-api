@@ -1,22 +1,24 @@
 package com.ead.course.controller;
 
+import com.ead.course.clients.AuthuserClient;
 import com.ead.course.dto.CourseDto;
 import com.ead.course.enums.CourseLevel;
 import com.ead.course.enums.CourseStatus;
 import com.ead.course.models.Course;
 import com.ead.course.repository.CourseRepository;
-import com.ead.course.repository.ModuleRepository;
 import com.ead.course.specification.CourseSpecification;
+import com.ead.course.validation.CourseValidator;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.*;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.ModelMap;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -31,8 +33,15 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("api/course")
 public class CourseController {
+
+
+    private final AuthuserClient authuserClient;
+
+    @Autowired
+    private CourseValidator courseValidator;
     private final CourseRepository courseRepository;
-    public CourseController(CourseRepository courseRepository) {
+    public CourseController(AuthuserClient authuserClient, CourseRepository courseRepository) {
+        this.authuserClient = authuserClient;
         this.courseRepository = courseRepository;
     }
 
@@ -60,10 +69,15 @@ public class CourseController {
     @Operation(summary = "Deve salvar um curso")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public Course save(@RequestBody @Valid Course course) {
+    public ResponseEntity<Object> save(@RequestBody Course course, Errors errors) {
+        courseValidator.validate(course,errors);
+        if (errors.hasErrors()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+        }
+        //authuserClient
         course.setCreationDate(LocalDateTime.now());
         course.setLastUpdateDate(LocalDateTime.now());
-        return this.courseRepository.save(course);
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.courseRepository.save(course));
     }
 
     @Operation(summary = "Deve atualizar um curso")
