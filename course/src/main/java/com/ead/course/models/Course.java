@@ -11,6 +11,7 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -32,6 +33,7 @@ public class Course implements Serializable {
     private UUID courseId;
     @NotBlank(message = "* curso obrigatório")
     private String name;
+    @NotNull(message = "descrição não pode ser vazia.")
     private String description;
     private String imageUrl;
     //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy HH:mm:ss")
@@ -54,7 +56,7 @@ public class Course implements Serializable {
     @ToString.Exclude
     private Set<Module> modules;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
     @JoinTable(
             name = "tb_course_schedule",
@@ -74,7 +76,7 @@ public class Course implements Serializable {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY , cascade = CascadeType.ALL)
     private Set<CourseUser> courseUsers;
 
     public CourseUser convertToCourseUser(UUID userId) {

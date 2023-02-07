@@ -1,9 +1,8 @@
 package com.ead.authuser.services.impl;
 
-import com.ead.authuser.filters.UserFilter;
 import com.ead.authuser.dtos.UserDto;
 import com.ead.authuser.enums.UserStatus;
-import com.ead.authuser.enums.UserType;
+import com.ead.authuser.filters.UserFilter;
 import com.ead.authuser.models.User;
 import com.ead.authuser.repository.UserRepository;
 import com.ead.authuser.services.UserService;
@@ -65,7 +64,7 @@ public class UserServiceImpl implements UserService {
     public User save(UserDto userDto) {
         var userModel = new User();
         BeanUtils.copyProperties(userDto, userModel);
-        userModel.setUserType(UserType.STUDENT);
+        userModel.setUserType(userDto.getUserType());
         userModel.setUserStatus(UserStatus.ACTIVE);
         userModel.setCreationDate(now(ZoneId.of("America/Sao_Paulo")));
         userModel.setLastUpdateDate(now(ZoneId.of("America/Sao_Paulo")));

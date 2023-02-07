@@ -46,6 +46,7 @@ public class CourseUserController {
         }
         try {
             responseUser =  authuserClient.getOneUserById(subscriptionDto.getUserID());
+            this.authuserClient.saveSubscriptionUserInCourse(subscriptionDto.getUserID(),courseId);
         } catch (HttpStatusCodeException e) {
             if(e.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error : user not found in database.");

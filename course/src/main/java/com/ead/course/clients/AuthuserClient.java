@@ -6,11 +6,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Component
@@ -22,6 +28,9 @@ public class AuthuserClient {
 
     @Value("${ead.api.url.authuser}")
     String REQUEST_URI_AUTHUSER;
+
+    @Value("${ead.api.url.user_course}")
+    String REQUEST_URI_USER_COURSE;
     public ResponseEntity<ResponsePagedDto<?>> getAllUsersByCourse(UUID courseId) {
         String url = REQUEST_URI_AUTHUSER + "?courseId=" +courseId;
 
@@ -41,5 +50,15 @@ public class AuthuserClient {
         String url = REQUEST_URI_AUTHUSER + "/" + userId;
         log.info("URL : {}",url);
         return restTemplate.exchange(url,HttpMethod.GET,null, UserDto.class);
+    }
+
+    public void saveSubscriptionUserInCourse(UUID userID, UUID courseId) {
+        Map<String , String> body = new LinkedHashMap<String,String>();
+        body.put("courseId" , String.valueOf(courseId));
+        HttpHeaders requestHeaders = new HttpHeaders();
+        String url = REQUEST_URI_USER_COURSE + "/users/"+userID+"/courses/subscription";
+        HttpEntity<?> httpEntity = new HttpEntity<Object>(body, requestHeaders);
+        log.info("URL REQUEST SUBSCRIPTION AUTHUSER [{}]" , url);
+        var response = restTemplate.exchange(url,HttpMethod.POST, httpEntity,String.class);
     }
 }

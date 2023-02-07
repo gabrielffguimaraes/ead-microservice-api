@@ -65,7 +65,7 @@ public class User implements Serializable {
     private String cep;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "userModel", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userModel", fetch = FetchType.LAZY , cascade = CascadeType.ALL, orphanRemoval = true)
     Set<UserCourse> usersCourse;
 
     @PrePersist

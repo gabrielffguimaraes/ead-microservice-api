@@ -1,5 +1,6 @@
 package com.ead.authuser.dtos;
 
+import com.ead.authuser.enums.UserType;
 import com.ead.authuser.validation.CepConstraint;
 import com.ead.authuser.validation.UsernameConstraint;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -57,4 +58,7 @@ public class UserDto {
     @CepConstraint(groups = UserView.RegistrationPost.class,message = "Cep Inválido")
     @JsonView({UserView.RegistrationPost.class,UserView.ResponsePost.class})
     private String cep;
+
+    @JsonView({UserView.RegistrationPost.class,UserView.ResponsePost.class})
+    private UserType userType;
 }

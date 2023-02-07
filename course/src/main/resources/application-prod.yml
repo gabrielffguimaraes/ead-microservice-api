@@ -21,3 +21,4 @@ ead:
   api:
     url:
       authuser: 'http://localhost:8080/users'
+      user_course: 'http://localhost:8080/api/userCourse'

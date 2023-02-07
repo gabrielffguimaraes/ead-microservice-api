@@ -13,8 +13,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.*;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,19 +65,23 @@ public class CourseController {
     @Operation(summary = "Deletar cursos")
     @DeleteMapping("{id}")
     public void delete(@PathVariable("id") String id) {
-        System.out.println(id);
+        log.info("DELETANDO CURSO [{}]", id);
         this.courseRepository.deleteById(UUID.fromString(id));
     }
 
     @Operation(summary = "Deve salvar um curso")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody Course course, Errors errors) {
+    public ResponseEntity<Object> save(@RequestBody @Valid Course course, Errors errors) {
         courseValidator.validate(course,errors);
         if (errors.hasErrors()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors
+                    .getAllErrors()
+                    .stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage
+                    ).collect(Collectors.toList())
+            );
         }
-        //authuserClient
         course.setCreationDate(LocalDateTime.now());
         course.setLastUpdateDate(LocalDateTime.now());
         return ResponseEntity.status(HttpStatus.CREATED).body(this.courseRepository.save(course));

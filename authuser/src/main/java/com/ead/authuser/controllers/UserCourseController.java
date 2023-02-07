@@ -46,12 +46,19 @@ public class UserCourseController {
     }
 
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/users/{userId}/courses/subscription")
     public ResponseEntity<?> userSubscriptionInCourse(@PathVariable("userId") UUID userId,@RequestBody @Valid UserCourseDto userCourseDto) {
         var user = this.userService.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found in database."));
-        if(userCourseService.existsByUserModelAAndCourseId(user,userCourseDto.getCourseId())) {
-
+        log.info("Inserindo course subscription");
+        log.info("User UID [{}]", userId);
+        log.info("Course UID [{}]",userCourseDto);
+        if(!userCourseService.existsByUserModelAAndCourseId(user,userCourseDto.getCourseId())) {
+            this.userCourseService.subscription(userId,userCourseDto.getCourseId());
+            return ResponseEntity.status(HttpStatus.CREATED).body("User subscribed successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User already subscribed in this course .");
         }
-        return null;
     }
+
 }

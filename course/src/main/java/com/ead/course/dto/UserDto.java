@@ -1,7 +1,8 @@
 package com.ead.course.dto;
 
+import com.ead.course.enums.UserType;
 import lombok.Data;
-import org.hibernate.usertype.UserType;
+
 
 import java.util.UUID;
 
