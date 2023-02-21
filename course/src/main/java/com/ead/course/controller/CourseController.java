@@ -32,6 +32,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Slf4j
+@CrossOrigin("*")
 @Tag(name = "Cursos",description = "Endpoint responsável por manter cursos")
 @RestController
 @RequestMapping("api/course")
