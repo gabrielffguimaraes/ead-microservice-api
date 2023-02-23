@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import java.util.UUID;
 
@@ -48,6 +49,7 @@ public class UserDto {
     private String phoneNumber;
 
     @CPF(groups = UserView.RegistrationPost.class)
+    @NotNull(groups = UserView.RegistrationPost.class,message = "CPF obrigatório")
     @JsonView({UserView.ResponsePost.class,UserView.RegistrationPost.class,UserView.UserPut.class})
     private String cpf;
 

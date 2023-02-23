@@ -14,8 +14,11 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Set;
 import java.util.UUID;
+
+import static java.time.LocalDateTime.now;
 
 @Data
 @Builder
@@ -40,7 +43,7 @@ public class User implements Serializable {
     @Column(length = 255)
     @JsonIgnore
     private String oldPassword;
-    @Column(nullable = false,length = 150)
+    @Column(length = 150)
     private String fullName;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -48,7 +51,7 @@ public class User implements Serializable {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserType userType;
-    @Column(nullable = false,length = 20)
+    @Column(length = 20)
     private String phoneNumber;
     @Column(nullable = false,length = 20)
     private String cpf;
@@ -70,10 +73,8 @@ public class User implements Serializable {
 
     @PrePersist
     public void prePersist() {
-        this.creationDate = LocalDateTime.now();
-        this.lastUpdateDate = LocalDateTime.now();
-        this.phoneNumber = "5521973550867";
-        this.userType = UserType.STUDENT;
+        this.setCreationDate(now(ZoneId.of("America/Sao_Paulo")));
+        this.setLastUpdateDate(now(ZoneId.of("America/Sao_Paulo")));
         this.userStatus = UserStatus.ACTIVE;
     }
     /*

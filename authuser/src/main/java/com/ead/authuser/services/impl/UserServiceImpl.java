@@ -64,10 +64,6 @@ public class UserServiceImpl implements UserService {
     public User save(UserDto userDto) {
         var userModel = new User();
         BeanUtils.copyProperties(userDto, userModel);
-        userModel.setUserType(userDto.getUserType());
-        userModel.setUserStatus(UserStatus.ACTIVE);
-        userModel.setCreationDate(now(ZoneId.of("America/Sao_Paulo")));
-        userModel.setLastUpdateDate(now(ZoneId.of("America/Sao_Paulo")));
         return userRepository.save(userModel);
     }
 
@@ -118,5 +114,6 @@ public class UserServiceImpl implements UserService {
         var userSpec = UserSpec.filter(userFilter);
         var filterCourseSpec = UserSpec.filterUserByCourseId(courseId);
         return userRepository.findAll(userSpec.and(filterCourseSpec),pageable);
+
     }
 }

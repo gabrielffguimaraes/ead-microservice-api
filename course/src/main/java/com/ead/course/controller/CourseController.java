@@ -73,8 +73,8 @@ public class CourseController {
     @Operation(summary = "Deve salvar um curso")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody @Valid Course course, Errors errors) {
-        courseValidator.validate(course,errors);
+    public ResponseEntity<Object> save(@RequestBody CourseDto courseDto, Errors errors) {
+        courseValidator.validate(courseDto,errors);
         if (errors.hasErrors()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors
                     .getAllErrors()
@@ -83,6 +83,7 @@ public class CourseController {
                     ).collect(Collectors.toList())
             );
         }
+        Course course = new ModelMapper().map(courseDto,Course.class);
         course.setCreationDate(LocalDateTime.now());
         course.setLastUpdateDate(LocalDateTime.now());
         return ResponseEntity.status(HttpStatus.CREATED).body(this.courseRepository.save(course));

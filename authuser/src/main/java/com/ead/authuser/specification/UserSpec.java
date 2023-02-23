@@ -3,6 +3,7 @@ package com.ead.authuser.specification;
 import com.ead.authuser.filters.UserFilter;
 import com.ead.authuser.models.User;
 import com.ead.authuser.models.UserCourse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Join;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 
+@Slf4j
 public class UserSpec {
     public static Specification<User> filter(UserFilter params) {
         return (root, query, criteriaBuilder) -> {
@@ -32,10 +34,9 @@ public class UserSpec {
     public static Specification<User> filterUserByCourseId(UUID courseId) {
         return (root,query,builder) -> {
             var predicates = new ArrayList<>();
-            query.distinct(true);
-            Join<User, UserCourse> userCourseRoot = root.join("usersCourse");
-
             if(courseId != null) {
+                query.distinct(true);
+                Join<User, UserCourse> userCourseRoot = root.join("usersCourse");
                 predicates.add(builder.equal(userCourseRoot.get("courseId"), courseId));
             }
             return builder.and(predicates.toArray(new Predicate[predicates.size()]));

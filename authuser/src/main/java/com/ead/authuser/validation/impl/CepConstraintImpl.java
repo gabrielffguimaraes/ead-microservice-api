@@ -32,6 +32,9 @@ public class CepConstraintImpl implements ConstraintValidator<CepConstraint,Stri
      */
     @Override
     public boolean isValid(String cep, ConstraintValidatorContext constraintValidatorContext) {
+        if(cep == null || cep.equals("")) {
+            return true;
+        }
         try {
             var cepOpt = cepRepository.cep(cep);
             boolean hasError = cepOpt.get().toString().contains("erro");

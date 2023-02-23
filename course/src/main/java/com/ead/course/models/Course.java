@@ -31,9 +31,7 @@ public class Course implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID courseId;
-    @NotBlank(message = "* curso obrigatório")
     private String name;
-    @NotNull(message = "descrição não pode ser vazia.")
     private String description;
     private String imageUrl;
     //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy HH:mm:ss")
@@ -47,6 +45,7 @@ public class Course implements Serializable {
     @Column
     @Enumerated(EnumType.STRING)
     private CourseLevel courseLevel;
+
     private UUID userInstructor;
 
     @JsonIgnoreProperties("course")
