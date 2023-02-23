@@ -7,7 +7,6 @@ spring:
     password:
   jpa:
     hibernate:
-      ddl-auto: 'create-drop'
       jdbc:
         lob.non-contextual-creation: true
     properties:
