@@ -52,7 +52,7 @@ public class UserController {
         Optional<User> user = userService.findById(userId);
         if(user.isPresent()) {
             userService.deleteById(user.get().getUserId());
-            return ResponseEntity.status(HttpStatus.OK).body("User deleted succesful");
+            return ResponseEntity.status(HttpStatus.OK).body("{\"message\": \"User deleted succesful\" }");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }

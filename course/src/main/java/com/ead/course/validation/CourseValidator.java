@@ -45,7 +45,7 @@ public class CourseValidator implements Validator {
     public void customValidation(CourseDto course, Errors errors) {
         try {
 
-            UUID instructor = UUID.fromString(course.getUserInstructor());
+            UUID instructor = UUID.fromString(course.getUserInstructor().trim());
             log.info("Instructor [{}]",instructor);
             ResponseEntity<UserDto> result = this.authuserClient.getOneUserById(instructor);
             UserDto userDto = result.getBody();
