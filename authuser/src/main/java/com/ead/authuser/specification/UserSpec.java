@@ -8,9 +8,9 @@ import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 @Slf4j
@@ -31,7 +31,7 @@ public class UserSpec {
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }
-    public static Specification<User> filterUserByCourseId(UUID courseId) {
+    public static Specification<User> filterUserByCourseId(BigInteger courseId) {
         return (root,query,builder) -> {
             var predicates = new ArrayList<>();
             if(courseId != null) {

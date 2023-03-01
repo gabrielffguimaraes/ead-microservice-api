@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
-import java.util.UUID;
+import java.math.BigInteger;
 
-public interface ModuleRepository extends JpaRepository<Module, UUID> , JpaSpecificationExecutor<Module> {
+public interface ModuleRepository extends JpaRepository<Module, BigInteger> , JpaSpecificationExecutor<Module> {
 
 }

@@ -3,6 +3,7 @@ package com.ead.course.controller;
 import com.ead.course.clients.AuthuserClient;
 import com.ead.course.dto.SubscriptionDto;
 import com.ead.course.dto.UserDto;
+import com.ead.course.enums.UserType;
 import com.ead.course.models.Course;
 import com.ead.course.models.CourseUser;
 import com.ead.course.services.CourseService;
@@ -15,10 +16,11 @@ import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.util.UUID;
+import java.math.BigInteger;
 
 @RestController
 @RequestMapping("api/courseUser")
+@CrossOrigin("*")
 public class CourseUserController {
 
     private final CourseService courseService;
@@ -32,12 +34,17 @@ public class CourseUserController {
     }
 
     @GetMapping("courses/{courseId}/users")
-    public ResponseEntity<?> getAllUsersByCourse(@PathVariable("courseId") UUID courseId) {
+    public ResponseEntity<?> getAllUsersByCourse(@PathVariable("courseId") BigInteger courseId) {
         return authuserClient.getAllUsersByCourse(courseId);
     }
 
+    @GetMapping("studentsNotIn/course/{courseId}")
+    public ResponseEntity<?> getStudentsNotIn(@PathVariable("courseId") BigInteger courseId) {
+        return authuserClient.getAllStudentsNotInCourse(courseId);
+    }
+
     @PostMapping("/courses/{courseId}/users/subscription")
-    public ResponseEntity<?> saveSubscriptionUserInCourse(@PathVariable("courseId") UUID courseId, @RequestBody @Valid SubscriptionDto subscriptionDto) {
+    public ResponseEntity<?> saveSubscriptionUserInCourse(@PathVariable("courseId") BigInteger courseId, @RequestBody @Valid SubscriptionDto subscriptionDto) {
         ResponseEntity<UserDto> responseUser;
         Course course = this.courseService.findCourseById(courseId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"curso não encontrado"));

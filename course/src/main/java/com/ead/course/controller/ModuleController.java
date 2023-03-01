@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.UUID;
+import java.math.BigInteger;
 import java.util.stream.Collectors;
 
 @RestController
@@ -26,7 +26,7 @@ public class ModuleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ModuleDto>> listAll(@RequestParam(value="courseId" , required = false) UUID courseId, @RequestParam(value = "title", required = false) String title) {
+    public ResponseEntity<List<ModuleDto>> listAll(@RequestParam(value="courseId" , required = false) BigInteger courseId, @RequestParam(value = "title", required = false) String title) {
         return ResponseEntity.status(HttpStatus.OK).body(this.moduleRepository.findAll(ModuleSpecification.filter(title , courseId))
                 .stream()
                 .map(ModuleDto::of)

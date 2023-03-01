@@ -16,8 +16,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.UUID;
+import java.math.BigInteger;
 
 @Component
 @Slf4j
@@ -31,7 +32,7 @@ public class AuthuserClient {
 
     @Value("${ead.api.url.user_course}")
     String REQUEST_URI_USER_COURSE;
-    public ResponseEntity<ResponsePagedDto<?>> getAllUsersByCourse(UUID courseId) {
+    public ResponseEntity<ResponsePagedDto<?>> getAllUsersByCourse(BigInteger courseId) {
         String url = REQUEST_URI_AUTHUSER + "?courseId=" +courseId;
 
         var responseType = new ParameterizedTypeReference<ResponsePagedDto<?>>() {};
@@ -46,13 +47,28 @@ public class AuthuserClient {
         return response;
     }
 
-    public ResponseEntity<UserDto> getOneUserById(UUID userId) {
+    public ResponseEntity<List<?>> getAllStudentsNotInCourse(BigInteger courseId) {
+        String url = REQUEST_URI_AUTHUSER + "/studentsNotIn/course/" +courseId;
+
+        var responseType = new ParameterizedTypeReference<List<?>>() {};
+
+        ResponseEntity<List<?>> response = null;
+        try {
+            log.info("Url : {}",url);
+            response = this.restTemplate.exchange(url, HttpMethod.GET, null, responseType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    public ResponseEntity<UserDto> getOneUserById(BigInteger userId) {
         String url = REQUEST_URI_AUTHUSER + "/" + userId;
         log.info("URL : {}",url);
         return restTemplate.exchange(url,HttpMethod.GET,null, UserDto.class);
     }
 
-    public void saveSubscriptionUserInCourse(UUID userID, UUID courseId) {
+    public void saveSubscriptionUserInCourse(BigInteger userID, BigInteger courseId) {
         Map<String , String> body = new LinkedHashMap<String,String>();
         body.put("courseId" , String.valueOf(courseId));
         HttpHeaders requestHeaders = new HttpHeaders();

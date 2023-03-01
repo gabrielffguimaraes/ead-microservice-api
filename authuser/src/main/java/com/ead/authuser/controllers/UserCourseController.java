@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.util.UUID;
+import java.math.BigInteger;
 
 @Log4j2
 @RestController
@@ -41,14 +41,14 @@ public class UserCourseController {
             direction = Sort.Direction.ASC,
             size = 10,
             page = 0,
-            sort = "courseId") Pageable pageable, @PathVariable(value = "userId") UUID userId) {
+            sort = "courseId") Pageable pageable, @PathVariable(value = "userId") BigInteger userId) {
         return ResponseEntity.status(HttpStatus.OK).body(userClient.getAllCoursesByUser(userId,pageable));
     }
 
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/users/{userId}/courses/subscription")
-    public ResponseEntity<?> userSubscriptionInCourse(@PathVariable("userId") UUID userId,@RequestBody @Valid UserCourseDto userCourseDto) {
+    public ResponseEntity<?> userSubscriptionInCourse(@PathVariable("userId") BigInteger userId, @RequestBody @Valid UserCourseDto userCourseDto) {
         var user = this.userService.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found in database."));
         log.info("Inserindo course subscription");
         log.info("User UID [{}]", userId);

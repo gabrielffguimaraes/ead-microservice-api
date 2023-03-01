@@ -16,7 +16,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.web.client.HttpStatusCodeException;
 
-import java.util.UUID;
+import java.math.BigInteger;
 
 @Slf4j
 @Component
@@ -45,7 +45,7 @@ public class CourseValidator implements Validator {
     public void customValidation(CourseDto course, Errors errors) {
         try {
 
-            UUID instructor = UUID.fromString(course.getUserInstructor().trim());
+            BigInteger instructor = BigInteger.valueOf(Long.parseLong(course.getUserInstructor().trim()));
             log.info("Instructor [{}]",instructor);
             ResponseEntity<UserDto> result = this.authuserClient.getOneUserById(instructor);
             UserDto userDto = result.getBody();

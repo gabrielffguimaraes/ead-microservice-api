@@ -1,27 +1,26 @@
 package com.ead.authuser.services.impl;
 
 import com.ead.authuser.dtos.UserDto;
-import com.ead.authuser.enums.UserStatus;
 import com.ead.authuser.filters.UserFilter;
 import com.ead.authuser.models.User;
 import com.ead.authuser.repository.UserRepository;
 import com.ead.authuser.services.UserService;
 import com.ead.authuser.specification.UserSpec;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
-
-import static java.time.LocalDateTime.now;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
@@ -42,7 +41,7 @@ public class UserServiceImpl implements UserService {
      * method must return a registered user filtered by id
      */
     @Override
-    public Optional<User> findById(UUID userId) {
+    public Optional<User> findById(BigInteger userId) {
         return userRepository.findById(userId);
     }
 
@@ -51,7 +50,7 @@ public class UserServiceImpl implements UserService {
      * method to delete an user by id
      */
     @Override
-    public void deleteById(UUID userId) {
+    public void deleteById(BigInteger userId) {
         userRepository.deleteById(userId);
     }
 
@@ -96,7 +95,7 @@ public class UserServiceImpl implements UserService {
      * must update a user partially in database
      */
     @Override
-    public User update(UUID userId, UserDto userDto) {
+    public User update(BigInteger userId, UserDto userDto) {
         var user = findById(userId).get();
         user.setFullName(userDto.getFullName());
         user.setPhoneNumber(userDto.getPhoneNumber());
@@ -110,10 +109,16 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public Page<User> findAll(UserFilter userFilter, UUID courseId, Pageable pageable) {
+    public Page<User> findAll(UserFilter userFilter, BigInteger courseId, Pageable pageable) {
         var userSpec = UserSpec.filter(userFilter);
         var filterCourseSpec = UserSpec.filterUserByCourseId(courseId);
         return userRepository.findAll(userSpec.and(filterCourseSpec),pageable);
 
+    }
+
+    @Override
+    public List<User> findAll(BigInteger courseId) {
+        log.info("Course id [{}]", courseId);
+        return userRepository.findStudentsNotInCourse(courseId);
     }
 }

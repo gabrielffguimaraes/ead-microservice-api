@@ -5,7 +5,7 @@ import com.ead.course.models.CourseUser;
 import com.ead.course.repository.CourseUserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
+import java.math.BigInteger;
 
 @Service
 public class CourseUserService {
@@ -16,7 +16,7 @@ public class CourseUserService {
         this.courseUserRepository = courseUserRepository;
     }
 
-    public boolean existsByCourseAndUserId(Course course, UUID userID) {
+    public boolean existsByCourseAndUserId(Course course, BigInteger userID) {
         return this.courseUserRepository.existsByCourseAndUserId(course,userID);
     }
 

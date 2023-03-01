@@ -13,10 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -41,10 +42,10 @@ public class AuthenticationController {
                                              UserDto userDto) {
 
         if(userService.existsByUsername(userDto.getUsername())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Error : Username is Already Taken !");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(List.of("Error : Username is Already Taken !"));
         }
         if(userService.existsByEmail(userDto.getEmail())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Error : Email is Already Taken !");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(List.of("Error : Email is Already Taken !"));
         };
 
         var savedUser = userService.save(userDto);
@@ -58,7 +59,7 @@ public class AuthenticationController {
 
     @PutMapping("/{userId}")
     @JsonView(UserDto.UserView.ResponsePost.class)
-    public ResponseEntity<Object> updateUser(@PathVariable UUID userId,
+    public ResponseEntity<Object> updateUser(@PathVariable BigInteger userId,
                                              @RequestBody
                                              @JsonView(UserDto.UserView.UserPut.class)
                                              UserDto userDto) {
@@ -71,7 +72,7 @@ public class AuthenticationController {
     }
 
     @PutMapping("/{userId}/password")
-    public ResponseEntity<Object> updatePassword(@PathVariable UUID userId,
+    public ResponseEntity<Object> updatePassword(@PathVariable BigInteger userId,
                                              @RequestBody
                                              @JsonView(UserDto.UserView.PasswordPut.class)
                                              @Validated(UserDto.UserView.PasswordPut.class)
@@ -80,7 +81,7 @@ public class AuthenticationController {
         if(!userModel.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error : User not found .");
         } else if(!userModel.get().getPassword().equals(userDto.getOldPassword())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Error : Mismatched old password .");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(List.of("Error : Mismatched old password ."));
         } else {
             var user = userModel.get();
             user.setPassword(userDto.getPassword());
@@ -92,7 +93,7 @@ public class AuthenticationController {
     }
 
     @PutMapping("/{userId}/image")
-    public ResponseEntity<Object> updateImage(@PathVariable UUID userId,
+    public ResponseEntity<Object> updateImage(@PathVariable BigInteger userId,
                                                  @RequestBody
                                                  @JsonView(UserDto.UserView.ImagePut.class)
                                                  @Validated(UserDto.UserView.ImagePut.class)

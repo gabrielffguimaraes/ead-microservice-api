@@ -11,8 +11,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import java.util.UUID;
+import java.math.BigInteger;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -26,7 +25,7 @@ public class UserDto {
         public static interface ImagePut {}
     }
     @JsonView(UserView.ResponsePost.class)
-    private UUID userId;
+    private BigInteger userId;
 
     @UsernameConstraint(groups = UserView.RegistrationPost.class)
     @NotBlank(groups = UserView.RegistrationPost.class)

@@ -1,14 +1,13 @@
 package com.ead.authuser.mock;
 
-import com.ead.authuser.models.UserCourse;
 import com.ead.authuser.models.User;
+import com.ead.authuser.models.UserCourse;
 import com.ead.authuser.repository.UserCourseRepository;
 import com.ead.authuser.repository.UserRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
 
-import java.util.UUID;
+import java.math.BigInteger;
 
 
 public class Users implements ApplicationRunner {
@@ -66,28 +65,28 @@ public class Users implements ApplicationRunner {
                 .build());
         var userCourse1 = UserCourse
                 .builder()
-                .courseId(UUID.fromString("090e97ad-e33c-486d-a58d-fcdd3bee7522"))
+                .courseId(BigInteger.valueOf(1))
                 .userModel(user1)
                 .build();
         var userCourse2 = UserCourse
                 .builder()
-                .courseId(UUID.fromString("090e97ad-e33c-486d-a58d-fcdd3bee7522"))
+                .courseId(BigInteger.valueOf(1))
                 .userModel(user2)
                 .build();
 
         var userCourse3 = UserCourse
                 .builder()
-                .courseId(UUID.fromString("ed72bbbe-c0c1-4dce-868b-72625322c1ff"))
+                .courseId(BigInteger.valueOf(2))
                 .userModel(user3)
                 .build();
         var userCourse4 = UserCourse
                 .builder()
-                .courseId(UUID.fromString("ed72bbbe-c0c1-4dce-868b-72625322c1ff"))
+                .courseId(BigInteger.valueOf(2))
                 .userModel(user4)
                 .build();
         var userCourse5 = UserCourse
                 .builder()
-                .courseId(UUID.fromString("ed72bbbe-c0c1-4dce-868b-72625322c1ff"))
+                .courseId(BigInteger.valueOf(3))
                 .userModel(user5)
                 .build();
 

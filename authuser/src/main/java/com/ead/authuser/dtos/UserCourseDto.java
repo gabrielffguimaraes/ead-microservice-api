@@ -3,12 +3,12 @@ package com.ead.authuser.dtos;
 import com.ead.authuser.models.User;
 import lombok.Data;
 
-import javax.persistence.*;
-import java.util.UUID;
+import java.math.BigInteger;
+
 
 @Data
 public class UserCourseDto {
-    private UUID id;
-    private UUID courseId;
+    private BigInteger id;
+    private BigInteger courseId;
     private User userModel;
 }

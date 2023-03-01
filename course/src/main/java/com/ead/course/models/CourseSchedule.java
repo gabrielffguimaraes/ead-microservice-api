@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.UUID;
+import java.math.BigInteger;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +20,7 @@ public class CourseSchedule implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID courseScheduleId;
+    private BigInteger courseScheduleId;
 
     @ManyToOne
     @JoinColumn(name = "courseId",referencedColumnName = "courseId")

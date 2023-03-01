@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
-import java.util.UUID;
+import java.math.BigInteger;
 
 @Data
 @NoArgsConstructor
@@ -26,7 +26,7 @@ public class Module implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID moduleId;
+    private BigInteger moduleId;
 
     private String title;
     private String description;

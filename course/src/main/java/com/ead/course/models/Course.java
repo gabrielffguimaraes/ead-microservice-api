@@ -16,7 +16,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Set;
-import java.util.UUID;
+import java.math.BigInteger;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -30,7 +30,7 @@ public class Course implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID courseId;
+    private BigInteger courseId;
     private String name;
     private String description;
     private String imageUrl;
@@ -46,7 +46,7 @@ public class Course implements Serializable {
     @Enumerated(EnumType.STRING)
     private CourseLevel courseLevel;
 
-    private UUID userInstructor;
+    private BigInteger userInstructor;
 
     @JsonIgnoreProperties("course")
     @OneToMany(mappedBy = "course",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
@@ -78,7 +78,7 @@ public class Course implements Serializable {
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY , cascade = CascadeType.ALL)
     private Set<CourseUser> courseUsers;
 
-    public CourseUser convertToCourseUser(UUID userId) {
+    public CourseUser convertToCourseUser(BigInteger userId) {
         return CourseUser.builder()
                 .userId(userId)
                 .course(this)

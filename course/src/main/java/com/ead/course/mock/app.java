@@ -9,7 +9,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
+import java.math.BigInteger;
 
 
 public class app implements ApplicationRunner {
@@ -75,27 +75,27 @@ public class app implements ApplicationRunner {
 
         var courseUser1 = CourseUser
                 .builder()
-                .userId(UUID.fromString("9eba3b56-9f59-4947-a7ea-dcd3ea54049c"))
+                .userId(BigInteger.valueOf(1))
                 .course(course1)
                 .build();
         var courseUser2 = CourseUser
                 .builder()
-                .userId(UUID.fromString("9eba3b56-9f59-4947-a7ea-dcd3ea54049c"))
+                .userId(BigInteger.valueOf(1))
                 .course(course2)
                 .build();
         var courseUser3 = CourseUser
                 .builder()
-                .userId(UUID.fromString("9eba3b56-9f59-4947-a7ea-dcd3ea54049c"))
+                .userId(BigInteger.valueOf(2))
                 .course(course3)
                 .build();
         var courseUser4 = CourseUser
                 .builder()
-                .userId(UUID.fromString("5223771b-5d17-4134-b1e8-539df131f642"))
+                .userId(BigInteger.valueOf(2))
                 .course(course1)
                 .build();
         var courseUser5 = CourseUser
                 .builder()
-                .userId(UUID.fromString("5223771b-5d17-4134-b1e8-539df131f642"))
+                .userId(BigInteger.valueOf(3))
                 .course(course2)
                 .build();
         this.courseUserRepository.save(courseUser1);

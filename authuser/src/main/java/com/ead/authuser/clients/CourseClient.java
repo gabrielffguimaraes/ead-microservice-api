@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.UUID;
+import java.math.BigInteger;
 
 @Component
 @Log4j2
@@ -24,7 +24,7 @@ public class CourseClient {
     
     @Value("${ead.api.url.course}")
     private String REQUEST_URI;
-    public Page<CourseDto> getAllCoursesByUser(UUID userId , Pageable pageable) {
+    public Page<CourseDto> getAllCoursesByUser(BigInteger userId , Pageable pageable) {
         Page<CourseDto> searchResult = null;
         String url = REQUEST_URI + "?userId="+userId+"&page="+pageable.getPageNumber()+"&size="+
                 pageable.getPageSize()+"&sort="+pageable.getSort().toString().replaceAll(": ",",");
@@ -43,7 +43,7 @@ public class CourseClient {
         return searchResult;
     }
 
-    public ResponseEntity<CourseDto> findCourseById(UUID courseId) {
+    public ResponseEntity<CourseDto> findCourseById(BigInteger courseId) {
         String url = REQUEST_URI + "/" + courseId;
         return new RestTemplate().exchange(url,HttpMethod.GET,null,CourseDto.class);
     }

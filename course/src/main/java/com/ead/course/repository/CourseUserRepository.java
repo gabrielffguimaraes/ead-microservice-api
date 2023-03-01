@@ -5,8 +5,8 @@ import com.ead.course.models.CourseUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
+import java.math.BigInteger;
 @Repository
-public interface CourseUserRepository extends JpaRepository<CourseUser, UUID> {
-    boolean existsByCourseAndUserId(Course course,UUID userId);
+public interface CourseUserRepository extends JpaRepository<CourseUser, BigInteger> {
+    boolean existsByCourseAndUserId(Course course,BigInteger userId);
 }

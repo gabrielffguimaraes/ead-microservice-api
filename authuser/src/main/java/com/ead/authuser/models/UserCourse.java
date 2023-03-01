@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.UUID;
+import java.math.BigInteger;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "tb_users_courses")
@@ -22,10 +22,10 @@ public class UserCourse implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private BigInteger id;
 
     @Column
-    private UUID courseId;
+    private BigInteger courseId;
 
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "userId", referencedColumnName = "userId")

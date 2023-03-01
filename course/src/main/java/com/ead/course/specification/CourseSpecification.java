@@ -9,10 +9,10 @@ import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
-import java.util.UUID;
+import java.math.BigInteger;
 
 public class CourseSpecification {
-    public static Specification<Course> filter(CourseLevel courseLevel, CourseStatus courseStatus, String name, UUID userId) {
+    public static Specification<Course> filter(CourseLevel courseLevel, CourseStatus courseStatus, String name, BigInteger userId) {
         return (root,query,criteriaBuilder) -> {
           var predicates = new ArrayList<>();
           if(courseLevel != null) {

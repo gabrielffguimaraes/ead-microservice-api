@@ -6,11 +6,11 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.UUID;
+import java.math.BigInteger;
 
 @Data
 public class CourseDto {
-    private UUID courseId;
+    private BigInteger courseId;
     @NotBlank(message = "* curso obrigatório")
     private String name;
     @NotNull(message = "descrição não pode ser vazia.")

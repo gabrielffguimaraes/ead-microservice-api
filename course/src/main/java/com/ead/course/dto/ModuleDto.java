@@ -7,14 +7,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
-import java.util.UUID;
+import java.math.BigInteger;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class ModuleDto {
-    private UUID moduleId;
+    private BigInteger moduleId;
 
     private String title;
     private String description;

@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-import java.util.UUID;
+import java.math.BigInteger;
 
-public interface CourseRepository extends JpaRepository<Course, UUID> , JpaSpecificationExecutor<Course> {
+public interface CourseRepository extends JpaRepository<Course, BigInteger> , JpaSpecificationExecutor<Course> {
     @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, attributePaths = {
             "modules",
             "modules.lessons",

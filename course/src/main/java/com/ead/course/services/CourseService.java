@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
-import java.util.UUID;
+import java.math.BigInteger;
 
 @Service
 public class CourseService {
 
     private final CourseRepository courseRepository;
 
-    public Optional<Course> findCourseById(UUID courseId) {
+    public Optional<Course> findCourseById(BigInteger courseId) {
         return this.courseRepository.findById(courseId);
     }
 

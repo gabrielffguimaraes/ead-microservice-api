@@ -6,7 +6,8 @@ import com.ead.authuser.repository.UserCourseRepository;
 import com.ead.authuser.services.UserCourseService;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
+import java.math.BigInteger;
+
 
 @Service
 public class UserCourseServiceImpl implements UserCourseService {
@@ -19,12 +20,12 @@ public class UserCourseServiceImpl implements UserCourseService {
     }
 
     @Override
-    public boolean existsByUserModelAAndCourseId(User user, UUID courseId) {
+    public boolean existsByUserModelAAndCourseId(User user, BigInteger courseId) {
         return userCourseRepository.existsByUserModelAndCourseId(user,courseId);
     }
 
     @Override
-    public void subscription(UUID userId, UUID courseId) {
+    public void subscription(BigInteger userId, BigInteger courseId) {
         this.userCourseRepository.save(UserCourse.builder()
                 .userModel(User.builder().userId(userId).build())
                 .courseId(courseId)

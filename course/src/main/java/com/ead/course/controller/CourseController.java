@@ -26,9 +26,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -55,7 +55,7 @@ public class CourseController {
                                                    @RequestParam(value="name", required=false) String name,
                                                    @RequestParam(value="courseLevel" , required=false)CourseLevel courseLevel,
                                                    @RequestParam(value="courseStatus" , required=false)CourseStatus courseStatus,
-                                                   @RequestParam(required = false) UUID userId
+                                                   @RequestParam(required = false) BigInteger userId
                                      ) {
         var result = this.courseRepository.findAll(CourseSpecification.filter(courseLevel,courseStatus,name,userId),page);
         List courses = result.stream().map(course -> new ModelMapper().map(course, CourseDto.class)).collect(Collectors.toList());
@@ -65,9 +65,9 @@ public class CourseController {
 
     @Operation(summary = "Deletar cursos")
     @DeleteMapping("{id}")
-    public void delete(@PathVariable("id") String id) {
+    public void delete(@PathVariable("id") BigInteger id) {
         log.info("DELETANDO CURSO [{}]", id);
-        this.courseRepository.deleteById(UUID.fromString(id));
+        this.courseRepository.deleteById(id);
     }
 
     @Operation(summary = "Deve salvar um curso")
@@ -91,8 +91,8 @@ public class CourseController {
 
     @Operation(summary = "Deve atualizar um curso")
     @PutMapping("{id}")
-    public Course update(@RequestBody @Valid Course course,@PathVariable("id") String id) {
-        var course1 = this.courseRepository.findById(UUID.fromString(id))
+    public Course update(@RequestBody @Valid Course course,@PathVariable("id") BigInteger id) {
+        var course1 = this.courseRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Curso não encontrado"));
         course1.setName(course.getName());
         course1.setLastUpdateDate(LocalDateTime.now());
@@ -101,7 +101,7 @@ public class CourseController {
 
     @Operation(summary="Find by id")
     @GetMapping("{courseId}")
-    public Course findById(@PathVariable UUID courseId) {
+    public Course findById(@PathVariable BigInteger courseId) {
         return this.courseRepository.findById(courseId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Curso não encontrado"));
     }

@@ -4,11 +4,11 @@ import com.ead.course.enums.UserType;
 import lombok.Data;
 
 
-import java.util.UUID;
+import java.math.BigInteger;
 
 @Data
 public class UserDto {
-    private UUID userId;
+    private BigInteger userId;
     private String username;
     private String email;
     private String password;

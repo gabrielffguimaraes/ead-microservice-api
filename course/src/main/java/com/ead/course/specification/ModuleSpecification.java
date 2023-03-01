@@ -10,11 +10,11 @@ import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.UUID;
+import java.math.BigInteger;
 
 public class ModuleSpecification {
     @Contract(pure = true)
-    public static @NotNull Specification<Module> filter(String title, UUID courseId) {
+    public static @NotNull Specification<Module> filter(String title, BigInteger courseId) {
         return (root,criteriaQuery,criteriaBuilder) -> {
             var predicates = new ArrayList<>();
             if(title != null) {

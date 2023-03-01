@@ -5,7 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.UUID;
+import java.math.BigInteger;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -19,12 +19,12 @@ public class CourseUser implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private BigInteger id;
 
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "courseId",referencedColumnName = "courseId")
     Course course;
 
     @Column(nullable = false)
-    UUID userId;
+    BigInteger userId;
 }

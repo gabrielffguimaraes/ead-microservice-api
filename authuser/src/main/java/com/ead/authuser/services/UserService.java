@@ -5,14 +5,17 @@ import com.ead.authuser.models.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public interface UserService {
     List<User> findAll();
-    Optional<User> findById(UUID userId);
-    void deleteById(UUID userId);
+
+    List<User> findAll(BigInteger courseId);
+
+    Optional<User> findById(BigInteger userId);
+    void deleteById(BigInteger userId);
 
     User save(UserDto userDto);
 
@@ -20,7 +23,7 @@ public interface UserService {
 
     boolean existsByEmail(String email);
 
-    User update(UUID userId, UserDto userDto);
+    User update(BigInteger userId, UserDto userDto);
 
-    Page<User> findAll(UserFilter userFilter, UUID courseId, Pageable pageable);
+    Page<User> findAll(UserFilter userFilter, BigInteger courseId, Pageable pageable);
 }
