@@ -4,10 +4,10 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/ead_authuser
     username: postgres
-    password: 123456
+    password: 12345678
   jpa:
     hibernate:
-      ddl-auto: 'update'
+      ddl-auto: 'create-drop'
       jdbc:
         lob.non-contextual-creation: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect

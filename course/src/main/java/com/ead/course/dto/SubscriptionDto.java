@@ -8,5 +8,5 @@ import java.math.BigInteger;
 @Data
 public class SubscriptionDto {
     @NotNull
-    private BigInteger userID;
+    private BigInteger userId;
 }

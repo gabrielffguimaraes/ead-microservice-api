@@ -1,7 +1,7 @@
 package com.ead.authuser.controllers;
 
-import com.ead.authuser.filters.UserFilter;
 import com.ead.authuser.dtos.UserDto;
+import com.ead.authuser.filters.UserFilter;
 import com.ead.authuser.models.User;
 import com.ead.authuser.services.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -15,11 +15,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*",maxAge = 3600)
