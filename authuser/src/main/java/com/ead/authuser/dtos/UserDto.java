@@ -8,9 +8,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.math.BigInteger;
 
 @Data
@@ -35,7 +33,7 @@ public class UserDto {
     @Email(groups = UserView.RegistrationPost.class,message = "Email inválido .")
     @JsonView({UserView.ResponsePost.class,UserView.RegistrationPost.class})
     private String email;
-    @NotBlank(groups = {UserView.RegistrationPost.class,UserView.PasswordPut.class})
+    @NotBlank(groups = {UserView.RegistrationPost.class,UserView.PasswordPut.class} , message = "Password obrigatório")
     @JsonView({UserView.RegistrationPost.class,UserView.PasswordPut.class})
     private String password;
     @NotBlank(groups = UserView.PasswordPut.class)
@@ -57,6 +55,7 @@ public class UserDto {
     private String imageUrl;
 
     @CepConstraint(groups = UserView.RegistrationPost.class,message = "Cep Inválido")
+    @Digits(fraction = 0,message = "Obrigatoriedade de 8 digitos para o cep",integer = 8)
     @JsonView({UserView.RegistrationPost.class,UserView.ResponsePost.class})
     private String cep;
 

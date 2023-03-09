@@ -1,13 +1,17 @@
 server:
-  port: 8080
+  port: 8081
+  servlet:
+    context-path: '/ead-authuser/'
 spring:
+  application:
+    name: ead-authuser-service
   datasource:
     url: jdbc:postgresql://localhost:5432/ead_authuser
     username: postgres
-    password: 12345678
+    password: 123456
   jpa:
     hibernate:
-      ddl-auto: 'create-drop'
+      ddl-auto: 'update'
       jdbc:
         lob.non-contextual-creation: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -19,6 +23,7 @@ spring:
       DEFAULT_VIEW_INCLUSION: true
     deserialization:
       fail-on-unknown-properties: false
+
 viacep: 'viacep.com.br/ws'
 
 logging:
@@ -27,8 +32,16 @@ logging:
     root: INFO
     org.springframework.web: INFO
     org.hibernate: INFO
-
+    org.springframework.cloud.loadbalancer: TRACE
 ead:
   api:
     url:
-      course: http://localhost:8082/api/course
+      course: http://ead-course-service
+
+#EUREKA CONFIGURATIONS AUTHUSER CLIENT
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost

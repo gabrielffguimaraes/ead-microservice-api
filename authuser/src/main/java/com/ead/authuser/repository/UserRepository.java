@@ -22,6 +22,6 @@ public interface UserRepository extends JpaRepository<User, BigInteger>, JpaSpec
     Page<User> findAll(Pageable pageable);
 
     @Query(value = "SELECT * FROM tb_users t1 LEFT JOIN tb_users_courses t2 ON t1.user_id = t2.user_id " +
-            "WHERE t2.course_id != :courseId or t2.course_id is null" , nativeQuery = true)
+            "WHERE (t2.course_id != :courseId or t2.course_id is null) and t1.user_type='STUDENT' " , nativeQuery = true)
     List<User> findStudentsNotInCourse(BigInteger courseId);
 }

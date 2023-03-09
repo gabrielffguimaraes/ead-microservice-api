@@ -1,6 +1,7 @@
 package com.ead.authuser.controllers;
 
 import com.ead.authuser.dtos.UserDto;
+import com.ead.authuser.enums.UserType;
 import com.ead.authuser.filters.UserFilter;
 import com.ead.authuser.models.User;
 import com.ead.authuser.services.UserService;
@@ -38,6 +39,7 @@ public class UserController {
                                                      @PageableDefault(page=0 ,size=20 , sort = "userId" , direction = Sort.Direction.DESC)
                                                      @RequestParam(required = false) BigInteger courseId,
                                                      Pageable pageable) {
+        log.info("Listing all users");
         var list = userService.findAll(userFilter,courseId,pageable);
         List<UserDto> listDto = Arrays.asList(modelMapper.map(list.getContent(),UserDto[].class));
         return ResponseEntity.ok(new PageImpl<>(listDto,pageable,list.getTotalElements()));

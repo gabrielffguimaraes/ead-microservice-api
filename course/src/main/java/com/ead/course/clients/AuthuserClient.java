@@ -77,4 +77,7 @@ public class AuthuserClient {
         log.info("URL REQUEST SUBSCRIPTION AUTHUSER [{}]" , url);
         var response = restTemplate.exchange(url,HttpMethod.POST, httpEntity,String.class);
     }
+
+    public void undoSubscriptions(BigInteger id) {
+    }
 }

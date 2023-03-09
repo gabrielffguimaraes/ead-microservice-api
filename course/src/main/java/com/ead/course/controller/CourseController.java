@@ -68,6 +68,7 @@ public class CourseController {
     public void delete(@PathVariable("id") BigInteger id) {
         log.info("DELETANDO CURSO [{}]", id);
         this.courseRepository.deleteById(id);
+        this.authuserClient.undoSubscriptions(id);
     }
 
     @Operation(summary = "Deve salvar um curso")
