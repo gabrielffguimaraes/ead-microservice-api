@@ -6,9 +6,9 @@ spring:
   application:
     name: ead-course-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/ead_course
+    url: jdbc:postgresql://localhost:5432/ead_course_v2
     username: postgres
-    password: 123456
+    password: postgres
   jpa:
     hibernate:
       ddl-auto: 'update'
@@ -24,8 +24,8 @@ spring:
 ead:
   api:
     url:
-      authuser: 'http://ead-authuser-service/api/users'
-      user_course: 'http://ead-authuser-service/api/userCourse'
+      authuser: 'http://ead-api-gateway/ead-authuser/api/users'
+      user_course: 'http://ead-api-gateway/ead-authuser/api/userCourse'
 
 #EUREKA CONFIGURATIONS AUTHUSER CLIENT
 eureka:

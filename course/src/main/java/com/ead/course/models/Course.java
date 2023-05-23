@@ -4,19 +4,16 @@ import com.ead.course.enums.CourseLevel;
 import com.ead.course.enums.CourseStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Set;
-import java.math.BigInteger;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -72,16 +69,5 @@ public class Course implements Serializable {
         this.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
     }
 
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-    private Set<CourseUser> courseUsers;
 
-    public CourseUser convertToCourseUser(BigInteger userId) {
-        return CourseUser.builder()
-                .userId(userId)
-                .course(this)
-                .build();
-    }
 }

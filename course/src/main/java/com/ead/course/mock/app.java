@@ -2,14 +2,11 @@ package com.ead.course.mock;
 
 import com.ead.course.enums.CourseLevel;
 import com.ead.course.enums.CourseStatus;
-import com.ead.course.models.*;
 import com.ead.course.models.Module;
+import com.ead.course.models.*;
 import com.ead.course.repository.*;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
-
-import java.math.BigInteger;
 
 
 public class app implements ApplicationRunner {
@@ -21,15 +18,13 @@ public class app implements ApplicationRunner {
 
     private final CourseScheduleRepository courseScheduleRepository;
 
-    private final CourseUserRepository courseUserRepository;
 
-    public app(CourseRepository courseRepository, LessonRepository lessonRepository, ModuleRepository moduleRepository, ScheduleRepository scheduleRepository, CourseScheduleRepository courseScheduleRepository, CourseUserRepository courseUserRepository) {
+    public app(CourseRepository courseRepository, LessonRepository lessonRepository, ModuleRepository moduleRepository, ScheduleRepository scheduleRepository, CourseScheduleRepository courseScheduleRepository) {
         this.courseRepository = courseRepository;
         this.lessonRepository = lessonRepository;
         this.moduleRepository = moduleRepository;
         this.scheduleRepository = scheduleRepository;
         this.courseScheduleRepository = courseScheduleRepository;
-        this.courseUserRepository = courseUserRepository;
     }
 
     @Override
@@ -72,36 +67,5 @@ public class app implements ApplicationRunner {
         /*CURSO 2*/
         this.courseScheduleRepository.save(CourseSchedule.builder().course(course2).schedule(terca).build());
         this.courseScheduleRepository.save(CourseSchedule.builder().course(course2).schedule(quinta).build());
-
-        var courseUser1 = CourseUser
-                .builder()
-                .userId(BigInteger.valueOf(1))
-                .course(course1)
-                .build();
-        var courseUser2 = CourseUser
-                .builder()
-                .userId(BigInteger.valueOf(1))
-                .course(course2)
-                .build();
-        var courseUser3 = CourseUser
-                .builder()
-                .userId(BigInteger.valueOf(2))
-                .course(course3)
-                .build();
-        var courseUser4 = CourseUser
-                .builder()
-                .userId(BigInteger.valueOf(2))
-                .course(course1)
-                .build();
-        var courseUser5 = CourseUser
-                .builder()
-                .userId(BigInteger.valueOf(3))
-                .course(course2)
-                .build();
-        this.courseUserRepository.save(courseUser1);
-        this.courseUserRepository.save(courseUser2);
-        this.courseUserRepository.save(courseUser3);
-        this.courseUserRepository.save(courseUser4);
-        this.courseUserRepository.save(courseUser5);
     }
 }

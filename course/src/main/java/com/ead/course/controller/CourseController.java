@@ -1,6 +1,5 @@
 package com.ead.course.controller;
 
-import com.ead.course.clients.AuthuserClient;
 import com.ead.course.dto.CourseDto;
 import com.ead.course.enums.CourseLevel;
 import com.ead.course.enums.CourseStatus;
@@ -39,13 +38,11 @@ import java.util.stream.Collectors;
 public class CourseController {
 
 
-    private final AuthuserClient authuserClient;
 
     @Autowired
     private CourseValidator courseValidator;
     private final CourseRepository courseRepository;
-    public CourseController(AuthuserClient authuserClient, CourseRepository courseRepository) {
-        this.authuserClient = authuserClient;
+    public CourseController(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
 
@@ -68,7 +65,6 @@ public class CourseController {
     public void delete(@PathVariable("id") BigInteger id) {
         log.info("DELETANDO CURSO [{}]", id);
         this.courseRepository.deleteById(id);
-        this.authuserClient.undoSubscriptions(id);
     }
 
     @Operation(summary = "Deve salvar um curso")

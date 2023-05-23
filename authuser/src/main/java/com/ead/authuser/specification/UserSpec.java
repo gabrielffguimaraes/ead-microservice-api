@@ -2,16 +2,12 @@ package com.ead.authuser.specification;
 
 import com.ead.authuser.filters.UserFilter;
 import com.ead.authuser.models.User;
-import com.ead.authuser.models.UserCourse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Slf4j
 public class UserSpec {
@@ -29,17 +25,6 @@ public class UserSpec {
                 predicates.add(criteriaBuilder.like(root.get("email"),"%"+params.getEmail()+"%"));
             }
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
-        };
-    }
-    public static Specification<User> filterUserByCourseId(BigInteger courseId) {
-        return (root,query,builder) -> {
-            var predicates = new ArrayList<>();
-            if(courseId != null) {
-                query.distinct(true);
-                Join<User, UserCourse> userCourseRoot = root.join("usersCourse");
-                predicates.add(builder.equal(userCourseRoot.get("courseId"), courseId));
-            }
-            return builder.and(predicates.toArray(new Predicate[predicates.size()]));
         };
     }
 }

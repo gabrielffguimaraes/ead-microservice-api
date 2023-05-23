@@ -1,29 +1,19 @@
 package com.ead.course.validation;
 
 
-import com.ead.course.clients.AuthuserClient;
 import com.ead.course.dto.CourseDto;
-import com.ead.course.dto.UserDto;
-import com.ead.course.enums.UserType;
-import com.ead.course.models.Course;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import org.springframework.web.client.HttpStatusCodeException;
-
-import java.math.BigInteger;
 
 @Slf4j
 @Component
 public class CourseValidator implements Validator {
 
-    @Autowired
-    AuthuserClient authuserClient;
+
 
     @Autowired
     @Qualifier("defaultValidator")
@@ -43,6 +33,7 @@ public class CourseValidator implements Validator {
     }
 
     public void customValidation(CourseDto course, Errors errors) {
+        /*
         try {
 
             BigInteger instructor = BigInteger.valueOf(Long.parseLong(course.getUserInstructor().trim()));
@@ -58,6 +49,6 @@ public class CourseValidator implements Validator {
             }
         } catch (IllegalArgumentException e) {
             errors.rejectValue("userInstructor" , "400","Instrutor Inválido .");
-        }
+        }*/
     }
 }
