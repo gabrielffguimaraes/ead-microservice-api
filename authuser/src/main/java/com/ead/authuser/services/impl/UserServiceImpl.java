@@ -105,16 +105,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    /**
-     * @param pageable
-     * @return
-     */
     @Override
     public Page<User> findAll(UserFilter userFilter, BigInteger courseId, Pageable pageable) {
-        var userSpec = UserSpec.filter(userFilter);
-        var filterCourseSpec = UserSpec.filterUserByCourseId(courseId);
-        return userRepository.findAll(userSpec.and(filterCourseSpec),pageable);
-
+        return null;
     }
 
     @Override

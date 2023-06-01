@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.math.BigInteger;
@@ -23,7 +24,7 @@ public class ModuleSpecification {
 
             if(courseId != null) {
                 criteriaQuery.distinct(true);
-                var courseRoot = criteriaQuery.from(Course.class);
+                Root<Course> courseRoot = criteriaQuery.from(Course.class);
                 Expression<Collection<Module>> modules = courseRoot.get("modules");
 
                 predicates.add(criteriaBuilder.equal(courseRoot.get("courseId") , courseId));

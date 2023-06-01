@@ -4,6 +4,7 @@ import com.ead.course.enums.CourseLevel;
 import com.ead.course.enums.CourseStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -13,6 +14,7 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.Set;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -62,6 +64,15 @@ public class Course implements Serializable {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<Schedule> schedule;
+
+    @JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
+    @ManyToMany
+    @JoinTable(
+            name = "tb_courses_users",
+            joinColumns = @JoinColumn(name="course_id"),
+            inverseJoinColumns = @JoinColumn(name="user_id")
+    )
+    List<UserModel> users;
 
     @PrePersist
     public void prePersist() {

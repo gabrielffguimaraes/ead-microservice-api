@@ -4,12 +4,18 @@ package com.ead.course.specification;
 import com.ead.course.enums.CourseLevel;
 import com.ead.course.enums.CourseStatus;
 import com.ead.course.models.Course;
-import org.hibernate.usertype.UserType;
+import com.ead.course.models.CourseSchedule;
+import com.ead.course.models.UserModel;
+import org.apache.catalina.User;
 import org.springframework.data.jpa.domain.Specification;
 
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
-import java.util.ArrayList;
+import javax.persistence.criteria.Root;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.UUID;
 
 public class CourseSpecification {
     public static Specification<Course> filter(CourseLevel courseLevel, CourseStatus courseStatus, String name, BigInteger userId) {
@@ -28,6 +34,42 @@ public class CourseSpecification {
               predicates.add(criteriaBuilder.equal(root.join("courseUsers").get("userId"),userId));
           }
           return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+        };
+    }
+    public static Specification<UserModel> filterUserId(UUID courseId) {
+        var predicates = new ArrayList<>();
+        return (root,query,builder) -> {
+            if(courseId != null) {
+                query.distinct(true);
+
+
+                /***************************/
+                Root<Course> courseRoot = query.from(Course.class);
+                //Expression<Collection<UserModel>> users = courseRoot.get("users");
+                /***************************/
+
+
+                predicates.add(builder.equal(courseRoot.get("courseId") , courseId));
+
+
+               // predicates.add(builder.isMember(root,users));
+            }
+            return builder.and();
+        };
+    }
+
+    public static Specification<Course> courseUserId(UUID userId) {
+        var predicates = new ArrayList<>();
+        return (root,query,builder) -> {
+            query.distinct(true);
+            if(userId != null) {
+                Root<UserModel> rootUserModel = query.from(UserModel.class);
+                predicates.add(builder.equal(rootUserModel.get("id"),userId));
+
+                Expression<Collection<Course>> courses = rootUserModel.get("courses");
+                predicates.add(builder.isMember(root,courses));
+            }
+            return builder.and();
         };
     }
 }

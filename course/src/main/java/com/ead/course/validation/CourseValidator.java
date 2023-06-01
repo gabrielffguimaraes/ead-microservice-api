@@ -13,8 +13,6 @@ import org.springframework.validation.Validator;
 @Component
 public class CourseValidator implements Validator {
 
-
-
     @Autowired
     @Qualifier("defaultValidator")
     private Validator validator;
