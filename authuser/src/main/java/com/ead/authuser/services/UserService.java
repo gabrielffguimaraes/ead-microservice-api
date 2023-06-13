@@ -17,7 +17,7 @@ public interface UserService {
     Optional<User> findById(BigInteger userId);
     void deleteById(BigInteger userId);
 
-    User save(UserDto userDto);
+    User save(User userDto);
 
     boolean existsByUsername(String username);
 
@@ -26,4 +26,7 @@ public interface UserService {
     User update(BigInteger userId, UserDto userDto);
 
     Page<User> findAll(UserFilter userFilter, BigInteger courseId, Pageable pageable);
+
+
+    public User saveUser(UserDto user);
 }

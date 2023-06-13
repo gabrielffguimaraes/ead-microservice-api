@@ -48,7 +48,8 @@ public class AuthenticationController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(List.of("Error : Email is Already Taken !"));
         };
 
-        var savedUser = userService.save(userDto);
+        var savedUser = userService.saveUser(userDto);
+
         UserDto userResponse =  modelMapper.map(savedUser,UserDto.class);
 
         log.debug("POST registerUser userModel saved {}",savedUser.getUserId());

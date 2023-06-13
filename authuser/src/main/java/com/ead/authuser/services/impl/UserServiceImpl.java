@@ -1,17 +1,22 @@
 package com.ead.authuser.services.impl;
 
 import com.ead.authuser.dtos.UserDto;
+import com.ead.authuser.dtos.UserEventDto;
+import com.ead.authuser.enums.ActionType;
 import com.ead.authuser.filters.UserFilter;
 import com.ead.authuser.models.User;
+import com.ead.authuser.publishers.UserEventPublisher;
 import com.ead.authuser.repository.UserRepository;
 import com.ead.authuser.services.UserService;
 import com.ead.authuser.specification.UserSpec;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -25,6 +30,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UserEventPublisher userEventPublisher;
 
     /**
      * @return List<User>
@@ -61,10 +68,8 @@ public class UserServiceImpl implements UserService {
      * method must save a new user
      */
     @Override
-    public User save(UserDto userDto) {
-        var userModel = new User();
-        BeanUtils.copyProperties(userDto, userModel);
-        return userRepository.save(userModel);
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
     /**
@@ -114,5 +119,16 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll(BigInteger courseId) {
         log.info("Course id [{}]", courseId);
         return userRepository.findStudentsNotInCourse(courseId);
+    }
+
+    @Transactional
+    @Override
+    public User saveUser(UserDto userDto) {
+        var user = new User();
+        BeanUtils.copyProperties(userDto, user);
+        User userSaved = this.save(user);
+        UserEventDto userEventDto = new ModelMapper().map(userSaved,UserEventDto.class);
+        userEventPublisher.publishUserEvent(userEventDto, ActionType.CREATE);
+        return userSaved;
     }
 }

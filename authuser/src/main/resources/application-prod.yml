@@ -23,6 +23,8 @@ spring:
       DEFAULT_VIEW_INCLUSION: true
     deserialization:
       fail-on-unknown-properties: false
+  rabbitmq:
+    addresses: amqps://pkarejhb:3wvfp-xlq2wCbIu6ZzR_lFhs64FhQ9Ew@whale.rmq.cloudamqp.com/pkarejhb
 
 viacep: 'viacep.com.br/ws'
 
@@ -37,7 +39,9 @@ ead:
   api:
     url:
       course: http://ead-api-gateway/ead-course
-
+  broker:
+    exchange:
+      userEvent: ead.userevent
 #EUREKA CONFIGURATIONS AUTHUSER CLIENT
 eureka:
   client:
@@ -45,3 +49,4 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
   instance:
     hostname: localhost
+

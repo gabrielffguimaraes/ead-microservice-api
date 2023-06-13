@@ -66,13 +66,13 @@ public class Course implements Serializable {
     private Set<Schedule> schedule;
 
     @JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "tb_courses_users",
-            joinColumns = @JoinColumn(name="course_id"),
-            inverseJoinColumns = @JoinColumn(name="user_id")
+            joinColumns = @JoinColumn(name="courseId"),
+            inverseJoinColumns = @JoinColumn(name="userId")
     )
-    List<UserModel> users;
+    Set<UserModel> users;
 
     @PrePersist
     public void prePersist() {

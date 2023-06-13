@@ -18,9 +18,6 @@ import java.util.UUID;
 @Entity
 public class UserModel {
     @Id
-    private UUID id;
-
-    @Id
     private UUID userId;
     @Column(nullable = false, unique = true, length = 50)
     private String email;
