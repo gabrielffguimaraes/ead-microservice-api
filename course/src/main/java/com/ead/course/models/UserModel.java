@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,7 +17,8 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "TB_USERS")
 @Entity
-public class UserModel {
+public class UserModel implements Serializable {
+    private final static long SerialVersionUID = 1L;
     @Id
     private UUID userId;
     @Column(nullable = false, unique = true, length = 50)

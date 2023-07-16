@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -28,6 +30,7 @@ import javax.validation.Valid;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -60,10 +63,12 @@ public class CourseController {
         return ResponseEntity.ok(response);
     }
 
+    @Transactional
     @Operation(summary = "Deletar cursos")
     @DeleteMapping("{id}")
-    public void delete(@PathVariable("id") BigInteger id) {
+    public void delete(@PathVariable("id") UUID id) {
         log.info("DELETANDO CURSO [{}]", id);
+        this.courseRepository.deleteCourseUserByCourseId(id);
         this.courseRepository.deleteById(id);
     }
 
@@ -80,7 +85,8 @@ public class CourseController {
                     ).collect(Collectors.toList())
             );
         }
-        Course course = new ModelMapper().map(courseDto,Course.class);
+        var course = new Course();
+        BeanUtils.copyProperties(courseDto,course);
         course.setCreationDate(LocalDateTime.now());
         course.setLastUpdateDate(LocalDateTime.now());
         return ResponseEntity.status(HttpStatus.CREATED).body(this.courseRepository.save(course));
@@ -88,7 +94,7 @@ public class CourseController {
 
     @Operation(summary = "Deve atualizar um curso")
     @PutMapping("{id}")
-    public Course update(@RequestBody @Valid Course course,@PathVariable("id") BigInteger id) {
+    public Course update(@RequestBody @Valid Course course,@PathVariable("id") UUID id) {
         var course1 = this.courseRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Curso não encontrado"));
         course1.setName(course.getName());
@@ -98,7 +104,7 @@ public class CourseController {
 
     @Operation(summary="Find by id")
     @GetMapping("{courseId}")
-    public Course findById(@PathVariable BigInteger courseId) {
+    public Course findById(@PathVariable UUID courseId) {
         return this.courseRepository.findById(courseId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Curso não encontrado"));
     }

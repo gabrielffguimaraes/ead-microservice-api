@@ -12,9 +12,11 @@ import org.springframework.data.jpa.domain.Specification;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 public class CourseSpecification {
@@ -37,27 +39,30 @@ public class CourseSpecification {
         };
     }
     public static Specification<UserModel> filterUserId(UUID courseId) {
-        var predicates = new ArrayList<>();
+
         return (root,query,builder) -> {
+            var predicates = new ArrayList<>();
             if(courseId != null) {
                 query.distinct(true);
 
 
-                /***************************/
+
                 Root<Course> courseRoot = query.from(Course.class);
-                //Expression<Collection<UserModel>> users = courseRoot.get("users");
-                /***************************/
+                Expression<Collection<UserModel>> users = courseRoot.get("users");
+
 
 
                 predicates.add(builder.equal(courseRoot.get("courseId") , courseId));
 
 
-               // predicates.add(builder.isMember(root,users));
+                predicates.add(builder.isMember(root,users));
+
             }
-            return builder.and();
+            return builder.and(predicates.toArray(new Predicate[predicates.size()]));
         };
     }
 
+    /*
     public static Specification<Course> courseUserId(UUID userId) {
         var predicates = new ArrayList<>();
         return (root,query,builder) -> {
@@ -70,6 +75,43 @@ public class CourseSpecification {
                 predicates.add(builder.isMember(root,courses));
             }
             return builder.and();
+        };
+    }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static Specification<Course> filterCoursesByUser(UUID userId) {
+        return (root, query,builder) -> {
+            query.distinct(true);
+            List<Predicate> predicates = new ArrayList<>();
+
+            Root<UserModel> usersRoot = query.from(UserModel.class);
+            predicates.add(builder.equal(usersRoot.get("userId"),userId));
+
+            Expression<Collection<Course>> courses = usersRoot.get("courses");
+            predicates.add(builder.isMember(root,courses));
+
+            return builder.and(predicates.toArray(new Predicate[predicates.size()]));
         };
     }
 }

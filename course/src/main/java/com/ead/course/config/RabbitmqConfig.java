@@ -17,6 +17,33 @@ public class RabbitmqConfig {
     @Autowired
     CachingConnectionFactory cachingConnectionFactory;
 
+    @Value("${ead.broker.exchange.userEvent}")
+    private String exchangeUserEvent;
+
+
+    @Bean
+    public RabbitTemplate rabbitTemplate() {
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(cachingConnectionFactory);
+        rabbitTemplate.setMessageConverter(messageConverter());
+        return rabbitTemplate;
+    }
+
+    @Bean
+    Jackson2JsonMessageConverter messageConverter() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        objectMapper.registerModules(javaTimeModule);
+        return new Jackson2JsonMessageConverter(objectMapper);
+    }
+
+    @Bean
+    FanoutExchange fanoutUserEvent() {
+        return new FanoutExchange(exchangeUserEvent);
+    }
+    /*
+    @Autowired
+    CachingConnectionFactory cachingConnectionFactory;
+
     @Value(value = "${ead.broker.exchange.userEvent}")
     private String exchangeUserEvent;
 
@@ -36,7 +63,7 @@ public class RabbitmqConfig {
     @Bean
     public FanoutExchange fanoutUserEvent() {
         return new FanoutExchange(exchangeUserEvent);
-    }
+    }*/
 
 
 }

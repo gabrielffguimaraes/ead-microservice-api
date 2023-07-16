@@ -4,11 +4,12 @@ import com.ead.authuser.models.User;
 import lombok.Data;
 
 import java.math.BigInteger;
+import java.util.UUID;
 
 
 @Data
 public class UserCourseDto {
-    private BigInteger id;
-    private BigInteger courseId;
+    private UUID id;
+    private UUID courseId;
     private User userModel;
 }

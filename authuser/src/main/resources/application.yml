@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ead-course-service
+    name: ead-authuser-service
   config:
     import: 'configserver:'
   cloud:

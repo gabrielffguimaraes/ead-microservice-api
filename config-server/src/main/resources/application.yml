@@ -1,0 +1,21 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: ead-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/gabrielffguimaraes/ead-config-server
+          default-label: main
+          username: gabrielffguimaraes
+          password: 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
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: 'http://localhost:8761/eureka'
+  instance:
+    hostname: localhost

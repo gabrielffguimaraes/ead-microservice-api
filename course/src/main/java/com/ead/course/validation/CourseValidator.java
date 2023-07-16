@@ -2,6 +2,9 @@ package com.ead.course.validation;
 
 
 import com.ead.course.dto.CourseDto;
+import com.ead.course.enums.UserType;
+import com.ead.course.models.UserModel;
+import com.ead.course.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,10 +12,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.util.Optional;
+
 @Slf4j
 @Component
 public class CourseValidator implements Validator {
 
+    @Autowired
+    private UserService userService;
     @Autowired
     @Qualifier("defaultValidator")
     private Validator validator;
@@ -31,22 +38,13 @@ public class CourseValidator implements Validator {
     }
 
     public void customValidation(CourseDto course, Errors errors) {
-        /*
-        try {
-
-            BigInteger instructor = BigInteger.valueOf(Long.parseLong(course.getUserInstructor().trim()));
-            log.info("Instructor [{}]",instructor);
-            ResponseEntity<UserDto> result = this.authuserClient.getOneUserById(instructor);
-            UserDto userDto = result.getBody();
-            if(!userDto.getUserType().equals(UserType.INSTRUCTOR)) {
-                errors.rejectValue("userInstructor","400","Erro encontrado deve ser do tipo instrutor .");
-            }
-        } catch (HttpStatusCodeException e) {
-            if(e.getStatusCode() == HttpStatus.NOT_FOUND) {
-                errors.rejectValue("userInstructor" , "400","Instrutor não encontrado");
-            }
-        } catch (IllegalArgumentException e) {
-            errors.rejectValue("userInstructor" , "400","Instrutor Inválido .");
-        }*/
+        Optional<UserModel> userModelOptional = userService.findById(course.getUserInstructor());
+        if(userModelOptional.isEmpty()) {
+            errors.rejectValue("userInstructor","UserInstructorError","Instructor not found !");
+            return;
+        }
+        if(userModelOptional.get().getUserType().equals(UserType.STUDENT.toString())) {
+            errors.rejectValue("userInstructor","UserInstructorError","User must be INSTRUCTOR or ADMIN");
+        }
     }
 }

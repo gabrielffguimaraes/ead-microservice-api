@@ -15,6 +15,7 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.UUID;
 
 import static java.time.LocalDateTime.now;
 
@@ -30,7 +31,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private BigInteger userId;
+    private UUID userId;
     @Column(unique = true,nullable = false,length = 50)
     private String username;
     @Column(unique = true,nullable = false,length = 50)

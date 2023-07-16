@@ -1,15 +1,18 @@
 package com.ead.authuser.dtos;
 
 import com.ead.authuser.enums.UserType;
+import com.ead.authuser.models.User;
 import com.ead.authuser.validation.CepConstraint;
 import com.ead.authuser.validation.UsernameConstraint;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
+import org.modelmapper.ModelMapper;
 
 import javax.validation.constraints.*;
 import java.math.BigInteger;
+import java.util.UUID;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -23,15 +26,15 @@ public class UserDto {
         public static interface ImagePut {}
     }
     @JsonView(UserView.ResponsePost.class)
-    private BigInteger userId;
+    private UUID userId;
 
     @UsernameConstraint(groups = UserView.RegistrationPost.class)
     @NotBlank(groups = UserView.RegistrationPost.class)
-    @JsonView({UserView.ResponsePost.class,UserView.RegistrationPost.class})
+    @JsonView({UserView.ResponsePost.class,UserView.RegistrationPost.class,UserView.UserPut.class})
     private String username;
     @NotBlank(groups = UserView.RegistrationPost.class)
     @Email(groups = UserView.RegistrationPost.class,message = "Email inválido .")
-    @JsonView({UserView.ResponsePost.class,UserView.RegistrationPost.class})
+    @JsonView({UserView.ResponsePost.class,UserView.RegistrationPost.class,UserView.UserPut.class})
     private String email;
     @NotBlank(groups = {UserView.RegistrationPost.class,UserView.PasswordPut.class} , message = "Password obrigatório")
     @JsonView({UserView.RegistrationPost.class,UserView.PasswordPut.class})
@@ -61,4 +64,9 @@ public class UserDto {
 
     @JsonView({UserView.RegistrationPost.class,UserView.ResponsePost.class})
     private UserType userType;
+
+
+    public User convertToUser() {
+        return new ModelMapper().map(this,User.class);
+    }
 }

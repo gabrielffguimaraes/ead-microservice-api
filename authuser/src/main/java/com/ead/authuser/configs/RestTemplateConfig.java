@@ -6,12 +6,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.Duration;
+
 @Configuration
 public class RestTemplateConfig {
-    @LoadBalanced
+    private final int TIMEOUT = 5000;
+
+
+    //@LoadBalanced
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         // TODO
-        return builder.build();
+        return builder
+                .setConnectTimeout(Duration.ofMillis(TIMEOUT))
+                .setReadTimeout(Duration.ofMillis(TIMEOUT))
+                .build();
     }
 }

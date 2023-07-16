@@ -2,8 +2,6 @@ package com.ead.course.specification;
 
 import com.ead.course.models.Course;
 import com.ead.course.models.Module;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Expression;
@@ -14,8 +12,8 @@ import java.util.Collection;
 import java.math.BigInteger;
 
 public class ModuleSpecification {
-    @Contract(pure = true)
-    public static @NotNull Specification<Module> filter(String title, BigInteger courseId) {
+
+    public static Specification<Module> filter(String title, BigInteger courseId) {
         return (root,criteriaQuery,criteriaBuilder) -> {
             var predicates = new ArrayList<>();
             if(title != null) {

@@ -1,6 +1,6 @@
 package com.ead.authuser;
 
-import com.ead.authuser.dtos.ResponsePageDto;
+import com.ead.authuser.dtos.ContentResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ class AuthuserApplicationTests {
 				"}";
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			ResponsePageDto<Object> responsePageDto = mapper.readerFor(ResponsePageDto.class).readValue(json);
+			ContentResponseDto<Object> responsePageDto = mapper.readerFor(ContentResponseDto.class).readValue(json);
 			log.info("Resultado : {}",responsePageDto);
 		} catch (Exception e) {
 			log.info("Error : {}",e.getMessage());
