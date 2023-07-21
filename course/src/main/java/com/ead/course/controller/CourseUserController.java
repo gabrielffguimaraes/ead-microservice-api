@@ -67,6 +67,7 @@ public class CourseUserController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"User is blocked");
         }
         this.courseService.saveSubscriptionUserInCourse(courseId,subscriptionDto.getUserId());
+        this.courseService.notificate(courseOptional.get(),userModel.get());
         return ResponseEntity.status(HttpStatus.CREATED).body("Subscription created successfully .");
     }
 
