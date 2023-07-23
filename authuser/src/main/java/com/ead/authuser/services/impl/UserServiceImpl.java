@@ -3,7 +3,9 @@ package com.ead.authuser.services.impl;
 import com.ead.authuser.dtos.UserDto;
 import com.ead.authuser.dtos.UserEventDto;
 import com.ead.authuser.enums.ActionType;
+import com.ead.authuser.enums.RoleType;
 import com.ead.authuser.filters.UserFilter;
+import com.ead.authuser.models.RoleModel;
 import com.ead.authuser.models.User;
 import com.ead.authuser.publishers.UserEventPublisher;
 import com.ead.authuser.repository.UserRepository;
@@ -16,6 +18,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -29,11 +32,17 @@ import java.util.UUID;
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Autowired
     UserRepository userRepository;
 
     @Autowired
     UserEventPublisher userEventPublisher;
+
+    @Autowired
+    public RoleServiceImpl roleService;
 
     /**
      * @return List<User>
@@ -108,6 +117,7 @@ public class UserServiceImpl implements UserService {
         user.setFullName(userDto.getFullName());
         user.setPhoneNumber(userDto.getPhoneNumber());
         user.setCpf(userDto.getCpf());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setLastUpdateDate(LocalDateTime.now(ZoneId.of("America/Sao_Paulo")));
         return userRepository.save(user);
     }
@@ -136,7 +146,13 @@ public class UserServiceImpl implements UserService {
     public User saveUser(UserDto userDto) {
         var user = new User();
         BeanUtils.copyProperties(userDto, user);
+
+        RoleModel roleModel = roleService.findByRoleName(RoleType.ROLE_USER)
+                .orElseThrow(() -> new RuntimeException("Error: Rule not not found !"));
+        user.getRoles().add(roleModel);
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         User userSaved = this.save(user);
+
         UserEventDto userEventDto = new ModelMapper().map(userSaved,UserEventDto.class);
         userEventDto.setUserId(userSaved.getUserId());
         userEventPublisher.publishUserEvent(userEventDto, ActionType.CREATE);

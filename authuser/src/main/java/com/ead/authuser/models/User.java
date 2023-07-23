@@ -5,6 +5,7 @@ import com.ead.authuser.enums.UserType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +13,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import static java.time.LocalDateTime.now;
@@ -66,6 +68,14 @@ public class User implements Serializable {
     @Column(length = 8)
     private String cep;
 
+    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "tb_user_roles",
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "roleId")
+    )
+    Set<RoleModel> roles = new HashSet<>();
 
     @PrePersist
     public void prePersist() {

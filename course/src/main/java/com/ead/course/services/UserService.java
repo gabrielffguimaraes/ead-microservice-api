@@ -30,7 +30,6 @@ public class UserService {
     }
 
     @Transactional
-
     public void delete(UUID userId) {
         this.courseRepository.deleteCourseUserByUserId(userId);
         this.userRepository.deleteById(userId);

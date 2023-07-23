@@ -1,9 +1,12 @@
 package com.ead.authuser.controllers;
 
 import com.ead.authuser.dtos.UserDto;
+import com.ead.authuser.enums.RoleType;
+import com.ead.authuser.models.RoleModel;
 import com.ead.authuser.models.User;
 import com.ead.authuser.repository.UserRepository;
 import com.ead.authuser.services.UserService;
+import com.ead.authuser.services.impl.RoleServiceImpl;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -27,13 +30,14 @@ public class AuthenticationController {
 
 
     @Autowired
-    UserService userService;
+    public UserService userService;
 
     @Autowired
-    UserRepository userRepository;
+    public UserRepository userRepository;
 
     @Autowired
-    ModelMapper modelMapper;
+    public ModelMapper modelMapper;
+
     @PostMapping("/signup")
     @JsonView(UserDto.UserView.ResponsePost.class)
     public ResponseEntity<Object> signup(@RequestBody

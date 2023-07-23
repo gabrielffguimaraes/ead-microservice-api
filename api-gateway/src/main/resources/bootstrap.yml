@@ -26,11 +26,18 @@ spring:
             - Path=/ead-notification/**
             - Method=POST,GET,PUT,DELETE,OPTIONS
 
-#EUREKA CONFIGURATIONS AUTHUSER CLIENT
+#EUREKA CONFIGURATIONS CLIENT
+ead:
+  serviceRegistry:
+    username: serviceregistry
+    password: ead123r
+
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: 'http://${ead.serviceRegistry.username}:${ead.serviceRegistry.password}@localhost:8761/eureka'
   instance:
     hostname: localhost
+
+
 

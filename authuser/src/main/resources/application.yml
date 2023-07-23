@@ -8,5 +8,6 @@ spring:
       discovery:
         serviceId: ead-config-server
         default-label: main
-
+      username: configserver
+      password: 'ead123cs'
 
