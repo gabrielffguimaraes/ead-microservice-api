@@ -11,3 +11,4 @@ spring:
       username: configserver
       password: 'ead123cs'
 
+

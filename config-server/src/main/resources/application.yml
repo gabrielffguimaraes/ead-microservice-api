@@ -11,7 +11,7 @@ spring:
           uri: https://github.com/gabrielffguimaraes/ead-config-server
           default-label: main
           username: gabrielffguimaraes
-          password: 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
+          password: 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
 
 ead:
   configServer:
