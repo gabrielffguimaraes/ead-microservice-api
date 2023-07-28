@@ -4,12 +4,8 @@ import com.ead.authuser.configs.security.JwtProvider;
 import com.ead.authuser.dtos.JwtDto;
 import com.ead.authuser.dtos.LoginDto;
 import com.ead.authuser.dtos.UserDto;
-import com.ead.authuser.enums.RoleType;
-import com.ead.authuser.models.RoleModel;
 import com.ead.authuser.models.User;
-import com.ead.authuser.repository.UserRepository;
 import com.ead.authuser.services.UserService;
-import com.ead.authuser.services.impl.RoleServiceImpl;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -40,9 +36,6 @@ public class AuthenticationController {
     AuthenticationManager authenticationManager;
     @Autowired
     public UserService userService;
-
-    @Autowired
-    public UserRepository userRepository;
 
     @Autowired
     public ModelMapper modelMapper;

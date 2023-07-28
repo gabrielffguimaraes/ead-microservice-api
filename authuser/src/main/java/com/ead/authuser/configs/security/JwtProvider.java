@@ -5,9 +5,11 @@ import com.auth0.jwt.algorithms.Algorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -20,8 +22,10 @@ public class JwtProvider {
 
     public String generateJwtToken(Authentication authentication) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        String roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(","));
         return JWT.create()
-                .withSubject(userDetails.getUsername())
+                .withSubject(userDetails.getUserId().toString())
+                .withClaim("roles",roles)
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(new Date().getTime() + expirationMs))
                 .sign(Algorithm.HMAC512(jwtSecret));

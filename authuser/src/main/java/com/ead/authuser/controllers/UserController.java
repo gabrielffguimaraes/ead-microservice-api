@@ -8,7 +8,6 @@ import com.ead.authuser.models.User;
 import com.ead.authuser.services.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +18,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpStatusCodeException;
-import org.springframework.web.client.RestTemplate;
 
-import java.math.BigInteger;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*",maxAge = 3600)
@@ -40,13 +42,19 @@ public class UserController {
     @Autowired
     RestTemplateApi restTemplate;
 
+    @PreAuthorize("hasRole('ADMIN') and hasRole('INSTRUCTOR') and hasRole('STUDENT')")
     @GetMapping
     @JsonView(UserDto.UserView.ResponsePost.class)
     public ResponseEntity<Page<UserDto>> getAllUsers(UserFilter userFilter,
                                                      @PageableDefault(page=0 ,size=20 , sort = "userId" , direction = Sort.Direction.DESC)
                                                      @RequestParam(required = false) UUID courseId,
-                                                     Pageable pageable) {
+                                                     Pageable pageable,
+                                                     Authentication authentication) {
+
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        log.info("User that is requesting : {}", userDetails.getUsername());
         log.info("Listing all users");
+        
         var list = userService.findAll(userFilter,courseId,pageable);
         List<UserDto> listDto = Arrays.asList(modelMapper.map(list.getContent(),UserDto[].class));
         return ResponseEntity.ok(new PageImpl<>(listDto,pageable,list.getTotalElements()));

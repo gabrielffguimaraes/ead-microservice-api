@@ -20,6 +20,9 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<User, UUID>, JpaSpecificationExecutor<User> {
     @EntityGraph(attributePaths = "roles", type = EntityGraph.EntityGraphType.FETCH)
     Optional<User> findByUsername(String username);
+
+    @EntityGraph(attributePaths = "roles", type = EntityGraph.EntityGraphType.FETCH)
+    Optional<User> findById(UUID id);
     Optional<User> findByEmail(String email);
 
     Page<User> findAll(Specification specification,Pageable pageable);
