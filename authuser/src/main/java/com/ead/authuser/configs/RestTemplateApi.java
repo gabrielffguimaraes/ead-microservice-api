@@ -22,11 +22,12 @@ public class RestTemplateApi {
     RestTemplate restTemplate;
 
     //@Retry(name = "retryInstance",fallbackMethod = "retryfallback")
-    public List<Course> getAllCoursesByUser(UUID userId) throws HttpStatusCodeException {
+    public List<Course> getAllCoursesByUser(UUID userId,String token) throws HttpStatusCodeException {
 
         //String url = "http://localhost:8080/ead-course/api/courseUser/users/"+userId+"/courses";
         String url = "http://localhost:8082/ead-course/api/courseUser/users/4e339be5-4ea9-4eb0-9faa-f8b8d7a466de/courses";
         HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorization",token);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         HttpEntity<String> httpEntity = new HttpEntity<String>("parameters",httpHeaders);
 
@@ -36,7 +37,7 @@ public class RestTemplateApi {
 
         System.out.println("Listando cursos de um determinado usuário");
         try {
-            responseEntity = restTemplate.exchange(url,HttpMethod.GET,null,parameterizedType);
+            responseEntity = restTemplate.exchange(url,HttpMethod.GET,httpEntity,parameterizedType);
         } catch (HttpStatusCodeException e) {
             System.out.println("Erro esperado .");
             e.printStackTrace();

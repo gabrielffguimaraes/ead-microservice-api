@@ -1,3 +1,6 @@
+health:
+  config:
+    enabled: false
 spring:
   application:
     name: ead-course-service

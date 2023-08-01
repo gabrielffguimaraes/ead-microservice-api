@@ -71,8 +71,8 @@ public class UserController {
 
     @CircuitBreaker(name = "circuitbreakerInstance")
     @GetMapping("/{userId}/courses")
-    public ResponseEntity<?> getAllCoursesByUser(@PathVariable UUID userId) {
-        List<Course> courses = restTemplate.getAllCoursesByUser(userId);
+    public ResponseEntity<?> getAllCoursesByUser(@PathVariable UUID userId,@RequestHeader("Authorization") String token) {
+        List<Course> courses = restTemplate.getAllCoursesByUser(userId,token);
         return ResponseEntity.ok(courses);
     }
 

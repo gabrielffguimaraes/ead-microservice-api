@@ -4,6 +4,7 @@ import com.ead.course.dto.UserEventDto;
 import com.ead.course.enums.ActionType;
 import com.ead.course.enums.UserStatus;
 import com.ead.course.services.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class UserConsumers {
     @Autowired
@@ -24,18 +26,23 @@ public class UserConsumers {
     ))
     public void listenUserEvent(@Payload UserEventDto userEventDto) {
         var userModel = userEventDto.convertToUserModel();
-        switch (ActionType.valueOf(userEventDto.getActionType())) {
-            case CREATE:
-                userModel.setUserStatus(UserStatus.ACTIVE.toString());
-                userService.save(userModel);
-                break;
-            case UPDATE:
-                userModel.setUserStatus(UserStatus.ACTIVE.toString());
-                userService.save(userModel);
-                break;
-            case DELETE:
-                userService.delete(userModel.getUserId());
-                break;
+        try {
+            switch (ActionType.valueOf(userEventDto.getActionType())) {
+                case CREATE:
+                    userModel.setUserStatus(UserStatus.ACTIVE.toString());
+                    userService.save(userModel);
+                    break;
+                case UPDATE:
+                    userModel.setUserStatus(UserStatus.ACTIVE.toString());
+                    userService.save(userModel);
+                    break;
+                case DELETE:
+                    userService.delete(userModel.getUserId());
+                    break;
+            }
+        } catch (Exception e) {
+            log.error("Error: create update or delete user : {} " , e.getMessage());
+            e.printStackTrace();
         }
     }
 }

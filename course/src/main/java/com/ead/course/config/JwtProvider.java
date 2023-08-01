@@ -1,18 +1,30 @@
 package com.ead.course.config;
 
-import org.springframework.security.core.GrantedAuthority;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.UUID;
 
 @Component
 public class JwtProvider {
-    public UUID getSubject(String token) {
-        return null;
+    @Value("${ead.jwt_secret}")
+    private String jwtSecret;
+
+    public String getSubject(String token) {
+        return JWT
+                .require(Algorithm.HMAC512(jwtSecret))
+                .build()
+                .verify(token)
+                .getSubject();
     }
 
-    public List<GrantedAuthority> getAuthorities(String token) {
-        return null;
+    public String getAuthorities(String token) {
+        return JWT
+                .require(Algorithm.HMAC512(jwtSecret))
+                .build()
+                .verify(token)
+                .getClaim("roles").asString();
     }
 }
