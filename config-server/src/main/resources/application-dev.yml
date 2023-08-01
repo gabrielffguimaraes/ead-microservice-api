@@ -1,0 +1,27 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/gabrielffguimaraes/ead-config-server
+          default-label: main
+          username: gabrielffguimaraes
+          password: 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
+
+ead:
+  configServer:
+    username: configserver
+    password: ead123cs
+  serviceRegistry:
+    username: serviceregistry
+    password: ead123r
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  'http://${ead.serviceRegistry.username}:${ead.serviceRegistry.password}@localhost:8761/eureka'
+  instance:
+    hostname: localhost
