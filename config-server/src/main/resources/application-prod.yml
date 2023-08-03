@@ -1,0 +1,28 @@
+server:
+  port: ${PORT}
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/gabrielffguimaraes/ead-config-server
+          default-label: main
+          username: ${GIT_USERNAME}
+          password: ${GIT_PASSWORD}
+
+encrypt:
+  key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJKWxEQ7Qa6Pzh9DVd5QpGJdfw4hCga1fp2OQpQKtbloS529s8sgeWGLhr2RbQ5KRs2/DJkQB6/u6Hbc9XPTudcCAwEAAQ
+
+ead:
+  configServer:
+    username: ${CONFIG_USERNAME}
+    password: ${CONFIG_PASSWORD}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  ${EUREKA_URL}
+  instance:
+    hostname: ${APP_DOMAIN_NAME}
+    non-secure-port: 80
