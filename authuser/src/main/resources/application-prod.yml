@@ -1,12 +1,6 @@
 spring:
   config:
-    import: 'configserver:'
-  cloud:
-    config:
-      discovery:
-        serviceId: ead-config-server
-        default-label: main
-      username: configserver
-      password: 'ead123cs'
+    import: 'configserver:${CONFIG_SERVER_URL}'
+
 
 
