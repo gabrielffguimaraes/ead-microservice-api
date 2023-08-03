@@ -1,0 +1,9 @@
+service registry
+
+username : serviceregistry
+password : ead123r
+
+config server 
+
+username : configserver
+password : ead123cs

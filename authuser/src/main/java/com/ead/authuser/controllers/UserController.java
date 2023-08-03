@@ -42,7 +42,7 @@ public class UserController {
     @Autowired
     RestTemplateApi restTemplate;
 
-    @PreAuthorize("hasRole('ADMIN') and hasRole('INSTRUCTOR') and hasRole('STUDENT')")
+    @PreAuthorize("hasRole('INSTRUCTOR')")
     @GetMapping
     @JsonView(UserDto.UserView.ResponsePost.class)
     public ResponseEntity<Page<UserDto>> getAllUsers(UserFilter userFilter,
