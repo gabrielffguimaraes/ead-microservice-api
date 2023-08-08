@@ -3,7 +3,7 @@ health:
     enabled: false
 spring:
   profiles:
-    active: dev
+    active: prod
   application:
     name: ead-course-service
   jpa:
