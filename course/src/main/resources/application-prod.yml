@@ -1,14 +1,3 @@
-health:
-  config:
-    enabled: false
 spring:
-  application:
-    name: ead-course-service
   config:
-    import: 'configserver:'
-  cloud:
-    config:
-      discovery:
-        serviceId: ead-config-server
-      username: configserver
-      password: 'ead123cs'
+    import: 'configserver:${CONFIG_SERVER_URL}'
