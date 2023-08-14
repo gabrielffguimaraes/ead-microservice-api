@@ -1,5 +1,12 @@
+health:
+  config:
+    enabled: false
 spring:
-  application:
-    name: ead-authuser-service
   profiles:
     active: prod
+  application:
+    name: ead-authuser-service
+  jpa:
+    hibernate:
+      ddl: true
+      ddl-auto: update
