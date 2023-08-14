@@ -143,11 +143,11 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public User saveUser(UserDto userDto) {
+    public User saveUser(UserDto userDto,RoleType roleType) {
         var user = new User();
         BeanUtils.copyProperties(userDto, user);
 
-        RoleModel roleModel = roleService.findByRoleName(RoleType.ROLE_USER)
+        RoleModel roleModel = roleService.findByRoleName(roleType)
                 .orElseThrow(() -> new RuntimeException("Error: Rule not not found !"));
         user.getRoles().add(roleModel);
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
