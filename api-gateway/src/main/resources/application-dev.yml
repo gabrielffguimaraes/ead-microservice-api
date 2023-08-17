@@ -1,10 +1,24 @@
+server:
+  port: 8080
+
 spring:
   config:
-    import: 'configserver:'
+    enabled: false
   cloud:
-    config:
-      discovery:
-        serviceId: ead-config-server
-        default-label: main
-      username: configserver
-      password: 'ead123cs'
+    gateway:
+      routes:
+        - id: authuser-service
+          uri: lb://ead-authuser-service
+          predicates:
+            - Path=/ead-authuser/**
+        - id: course-service
+          uri: lb://ead-course-service
+          predicates:
+            - Path=/ead-course/**
+#EUREKA CONFIGURATIONS AUTHUSER CLIENT
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://serviceregistry:ead123r@localhost:8761/eureka/
+  instance:
+    hostname: localhost
