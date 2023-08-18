@@ -29,7 +29,7 @@ public class RestTemplateApi {
     public List<Course> getAllCoursesByUser(UUID userId,String token) throws HttpStatusCodeException {
 
         //String url = "http://localhost:8080/ead-course/api/courseUser/users/"+userId+"/courses";
-        String url = urlCourseApi+"/api/courseUser/users/4e339be5-4ea9-4eb0-9faa-f8b8d7a466de/courses";
+        String url = urlCourseApi+"/api/courseUser/users/"+userId+"/courses";
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Authorization",token);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));

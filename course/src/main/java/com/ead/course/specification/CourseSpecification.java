@@ -109,7 +109,7 @@ public class CourseSpecification {
             /*
             Root<UserModel> usersRoot = query.from(UserModel.class);*/
             log.info("USER ID === {}",userId);
-            predicates.add(builder.equal(root.get("users").get("userId"),userId));
+            predicates.add(builder.equal(root.join("users").get("userId"),userId));
 /*
             Expression<Collection<Course>> courses = usersRoot.get("courses");
             predicates.add(builder.isMember(root,courses));*/
