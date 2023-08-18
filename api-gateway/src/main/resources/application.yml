@@ -3,7 +3,3 @@ spring:
     name: ead-api-gateway
   profiles:
     active: dev
-<<<<<<< HEAD
-=======
-  application:
->>>>>>> 3c8a64c792c98426579ac72f79d65dd781ca95de
