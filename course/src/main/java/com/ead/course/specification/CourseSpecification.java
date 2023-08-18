@@ -104,12 +104,12 @@ public class CourseSpecification {
         return (root, query,builder) -> {
             query.distinct(true);
             List<Predicate> predicates = new ArrayList<>();
-
-            Root<UserModel> usersRoot = query.from(UserModel.class);
-            predicates.add(builder.equal(usersRoot.get("userId"),userId));
-
+            /*
+            Root<UserModel> usersRoot = query.from(UserModel.class);*/
+            predicates.add(builder.equal(root.get("users").get("userId"),userId));
+/*
             Expression<Collection<Course>> courses = usersRoot.get("courses");
-            predicates.add(builder.isMember(root,courses));
+            predicates.add(builder.isMember(root,courses));*/
 
             return builder.and(predicates.toArray(new Predicate[predicates.size()]));
         };
