@@ -43,7 +43,7 @@ public class CourseUserController {
     @GetMapping("users/{userId}/courses")
     public ResponseEntity<?> getAllCoursesByUserId(@PathVariable("userId") UUID userId) {
         List<Course> courses = courseService.findAll(CourseSpecification.filterCoursesByUser(userId));
-        log.info("LISTANDO CURSOS == {}",courses.toString());
+        log.info("LISTANDO CURSOS == {}",courses);
         ContentResponseDto<Course> contentResponseDto = ContentResponseDto.<Course>builder().content(courses).build();
         return ResponseEntity.ok(contentResponseDto);
     }
