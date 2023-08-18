@@ -6,6 +6,7 @@ import com.ead.course.enums.CourseStatus;
 import com.ead.course.models.Course;
 import com.ead.course.models.CourseSchedule;
 import com.ead.course.models.UserModel;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.User;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -19,6 +20,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 public class CourseSpecification {
     public static Specification<Course> filter(CourseLevel courseLevel, CourseStatus courseStatus, String name, BigInteger userId) {
         return (root,query,criteriaBuilder) -> {
@@ -106,6 +108,7 @@ public class CourseSpecification {
             List<Predicate> predicates = new ArrayList<>();
             /*
             Root<UserModel> usersRoot = query.from(UserModel.class);*/
+            log.info("USER ID === {}",userId);
             predicates.add(builder.equal(root.get("users").get("userId"),userId));
 /*
             Expression<Collection<Course>> courses = usersRoot.get("courses");
