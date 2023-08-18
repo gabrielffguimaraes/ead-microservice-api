@@ -4,8 +4,12 @@ import com.ead.authuser.configs.security.JwtProvider;
 import com.ead.authuser.dtos.JwtDto;
 import com.ead.authuser.dtos.LoginDto;
 import com.ead.authuser.dtos.UserDto;
+import com.ead.authuser.enums.RoleType;
+import com.ead.authuser.enums.UserType;
+import com.ead.authuser.models.RoleModel;
 import com.ead.authuser.models.User;
 import com.ead.authuser.services.UserService;
+import com.ead.authuser.services.impl.RoleServiceImpl;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -43,6 +47,9 @@ public class AuthenticationController {
     @Autowired
     public JwtProvider jwtProvider;
 
+    @Autowired
+    public RoleServiceImpl roleService;
+
     @PostMapping("/signup")
     @JsonView(UserDto.UserView.ResponsePost.class)
     public ResponseEntity<Object> signup(@RequestBody
@@ -57,7 +64,34 @@ public class AuthenticationController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(List.of("Error : Email is Already Taken !"));
         };
 
-        var savedUser = userService.saveUser(userDto);
+        var savedUser = userService.saveUser(userDto,RoleType.ROLE_USER);
+
+        UserDto userResponse =  modelMapper.map(savedUser,UserDto.class);
+
+        log.debug("POST registerUser userModel saved {}",savedUser.getUserId());
+        log.debug("User saved successfully userId {}",savedUser.getUserId());
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(userResponse);
+    }
+
+
+    @PostMapping("/signup/admin")
+    @JsonView(UserDto.UserView.ResponsePost.class)
+    public ResponseEntity<Object> signupAdmins(@RequestBody
+                                         @JsonView(UserDto.UserView.RegistrationPost.class)
+                                         @Validated(UserDto.UserView.RegistrationPost.class)
+                                         UserDto userDto) {
+
+        if(userService.existsByUsername(userDto.getUsername())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(List.of("Error : Username is Already Taken !"));
+        }
+        if(userService.existsByEmail(userDto.getEmail())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(List.of("Error : Email is Already Taken !"));
+        };
+
+        userDto.setUserType(UserType.ADMIN);
+
+        var savedUser = userService.saveUser(userDto, RoleType.ROLE_ADMIN);
 
         UserDto userResponse =  modelMapper.map(savedUser,UserDto.class);
 

@@ -1,3 +1,6 @@
+health:
+  config:
+    enabled: false
 server:
   port: 8888
 
@@ -9,7 +12,7 @@ spring:
           uri: https://github.com/gabrielffguimaraes/ead-config-server
           default-label: main
           username: gabrielffguimaraes
-          password: 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
+          password: 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
 
 ead:
   configServer:

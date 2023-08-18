@@ -30,6 +30,7 @@ public class WebSecurityConfig {
     private AuthenticationJwtFilter authenticationJwtFilter;
     private static final String[] AUTH_WHITELIST = {
             "/api/auth/signup",
+            "/api/auth/signup/admin",
             "/api/auth/login"
     };
 

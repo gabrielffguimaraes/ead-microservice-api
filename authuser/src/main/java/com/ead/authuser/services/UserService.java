@@ -1,6 +1,7 @@
 package com.ead.authuser.services;
 
 import com.ead.authuser.dtos.UserDto;
+import com.ead.authuser.enums.RoleType;
 import com.ead.authuser.filters.UserFilter;
 import com.ead.authuser.models.User;
 import org.springframework.data.domain.Page;
@@ -30,7 +31,7 @@ public interface UserService {
     Page<User> findAll(UserFilter userFilter, UUID courseId, Pageable pageable);
 
 
-    public User saveUser(UserDto user);
+    public User saveUser(UserDto user, RoleType roleType);
 
     public void deleteUser(User userModel);
     public User updateUser(UserDto user);
