@@ -1,0 +1,658 @@
+{
+	"info": {
+		"_postman_id": "55a373d0-7bcc-4c66-ac89-fca0106ead62",
+		"name": "ead-microservices-course",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11944393"
+	},
+	"item": [
+		{
+			"name": "salvar student",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"admin\",\r\n    \"email\":\"gabrielffguimaraes@gmail.com\",\r\n    \"password\":\"admin\",\r\n    \"fullName\":\"gabriel ferreira guimarães\",\r\n    \"phoneNumber\":\"21973550867\",\r\n    \"cpf\":\"15224280702\",\r\n    \"userType\":\"STUDENT\",\r\n    \"imageUrl\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ead-authuser/api/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-authuser",
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvar admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"adminLogin\",\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"adminLogin\",\r\n    \"fullName\":\"tesla da tamariano\",\r\n    \"phoneNumber\":\"21955465455\",\r\n    \"cpf\":\"07749788727\",\r\n    \"imageUrl\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ead-authuser/api/auth/signup/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-authuser",
+						"api",
+						"auth",
+						"signup",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvar instructor",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "adminInstructor",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "adminInstructor",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"adminInstructor\",\r\n    \"email\":\"instructor@gmail.com\",\r\n    \"password\":\"adminInstructor\",\r\n    \"fullName\":\"carlos fernandes da cunha\",\r\n    \"phoneNumber\":\"21964106493\",\r\n    \"cpf\":\"25669495063\",\r\n    \"userType\":\"INSTRUCTOR\",\r\n    \"imageUrl\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ead-authuser/api/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-authuser",
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletar usuario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ead-authuser/api/users/1bb649b0-0015-4d78-b5ab-991eda55523e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-authuser",
+						"api",
+						"users",
+						"1bb649b0-0015-4d78-b5ab-991eda55523e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update usuario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"adminTeste\",\r\n    \"email\":\"gabrielffguimaraes@gmail.commmmmm\",\r\n    \"fullName\":\"gabriel ferreira ramon\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ead-authuser/api/auth/e466284e-4114-4285-8acc-18755fb9d61a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-authuser",
+						"api",
+						"auth",
+						"e466284e-4114-4285-8acc-18755fb9d61a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criar-curso",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"course math\",\r\n    \"description\":\"description 1 course\",\r\n    \"imageUrl\":\"\",\r\n    \"courseStatus\":\"INPROGRESS\",\r\n    \"courseLevel\":\"BEGINNER\",\r\n    \"userInstructor\":\"ec514c2b-e360-4842-94e4-f0f80c90a3a1\"       \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ead-course/api/course",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-course",
+						"api",
+						"course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criar inscriçao",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\":\"41ee1120-0f47-40e5-95ae-65b19ece7fb1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ead-course/api/courseUser/courses/ddbdfd33-8280-4e86-a204-ec1b8a65884d/users/subscription",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-course",
+						"api",
+						"courseUser",
+						"courses",
+						"ddbdfd33-8280-4e86-a204-ec1b8a65884d",
+						"users",
+						"subscription"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar usuários de um curso",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/ead-course/api/courseUser/courses/9fbd4fce-2f1c-42eb-8e7d-a52c17ba06bf/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-course",
+						"api",
+						"courseUser",
+						"courses",
+						"9fbd4fce-2f1c-42eb-8e7d-a52c17ba06bf",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar cursos de um usuário",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ead-authuser/api/users/4e339be5-4ea9-4eb0-9faa-f8b8d7a466de/courses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-authuser",
+						"api",
+						"users",
+						"4e339be5-4ea9-4eb0-9faa-f8b8d7a466de",
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletar curso",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ead-course/api/course/9fbd4fce-2f1c-42eb-8e7d-a52c17ba06bf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-course",
+						"api",
+						"course",
+						"9fbd4fce-2f1c-42eb-8e7d-a52c17ba06bf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar usuários",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4YWJkNzIwNS0yNTc2LTRiODQtYjExNi0wZWVlNzc0MTQ5ZWQiLCJyb2xlcyI6IlJPTEVfQURNSU4sUk9MRV9JTlNUUlVDVE9SLFJPTEVfVVNFUixST0xFX1NUVURFTlQiLCJleHAiOjE2OTI1MTY4NzYsImlhdCI6MTY5MjUwMjQ3Nn0.WAX-P5H7yuYk3OmJ_Xt_MhdKrdiJchs2BGRat8BNL8gv-8WB7rrjfZ52gxd68QzYtQMhiUsAjtyJrY2veyiraQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ead-authuser/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-authuser",
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar cursos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4YWJkNzIwNS0yNTc2LTRiODQtYjExNi0wZWVlNzc0MTQ5ZWQiLCJyb2xlcyI6IlJPTEVfQURNSU4sUk9MRV9JTlNUUlVDVE9SLFJPTEVfVVNFUixST0xFX1NUVURFTlQiLCJleHAiOjE2OTI1MTY4NzYsImlhdCI6MTY5MjUwMjQ3Nn0.WAX-P5H7yuYk3OmJ_Xt_MhdKrdiJchs2BGRat8BNL8gv-8WB7rrjfZ52gxd68QzYtQMhiUsAjtyJrY2veyiraQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ead-course/api/course",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-course",
+						"api",
+						"course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config-server-list",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ead123cs",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "configserver",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/ead-api-gateway-dev/main",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"ead-api-gateway-dev",
+						"main"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refreshscope check updates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ead-authuser/api/refreshscope",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-authuser",
+						"api",
+						"refreshscope"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh token actuator",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ead-authuser/actuator/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-authuser",
+						"actuator",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar notifications",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4YWJkNzIwNS0yNTc2LTRiODQtYjExNi0wZWVlNzc0MTQ5ZWQiLCJyb2xlcyI6IlJPTEVfQURNSU4sUk9MRV9JTlNUUlVDVE9SLFJPTEVfVVNFUixST0xFX1NUVURFTlQiLCJleHAiOjE2OTI1MTY4NzYsImlhdCI6MTY5MjUwMjQ3Nn0.WAX-P5H7yuYk3OmJ_Xt_MhdKrdiJchs2BGRat8BNL8gv-8WB7rrjfZ52gxd68QzYtQMhiUsAjtyJrY2veyiraQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ead-notification/api/notification/users/41ee1120-0f47-40e5-95ae-65b19ece7fb1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-notification",
+						"api",
+						"notification",
+						"users",
+						"41ee1120-0f47-40e5-95ae-65b19ece7fb1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar notifications hex",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4YWJkNzIwNS0yNTc2LTRiODQtYjExNi0wZWVlNzc0MTQ5ZWQiLCJyb2xlcyI6IlJPTEVfQURNSU4sUk9MRV9JTlNUUlVDVE9SLFJPTEVfVVNFUixST0xFX1NUVURFTlQiLCJleHAiOjE2OTI1MTc1ODUsImlhdCI6MTY5MjUwMzE4NX0.p2WRRSCZb9xkHr82kw4TmH4kZ5q5QAl55PQD_M5HWRKe3zhbFRRpBzgEsWT972oKKMlRinoL-bZ5iODh_s--8w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/ead-notification-hex/api/notification/users/41ee1120-0f47-40e5-95ae-65b19ece7fb1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"ead-notification-hex",
+						"api",
+						"notification",
+						"users",
+						"41ee1120-0f47-40e5-95ae-65b19ece7fb1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update notification",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"notificationStatus\": \"READ\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ead-notification/api/notification/users/1bb649b0-0015-4d78-b5ab-991eda55523e/notifications/690ab82f-be00-4afa-9df8-bb06d1b49d51",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-notification",
+						"api",
+						"notification",
+						"users",
+						"1bb649b0-0015-4d78-b5ab-991eda55523e",
+						"notifications",
+						"690ab82f-be00-4afa-9df8-bb06d1b49d51"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update notification hex",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4YWJkNzIwNS0yNTc2LTRiODQtYjExNi0wZWVlNzc0MTQ5ZWQiLCJyb2xlcyI6IlJPTEVfQURNSU4sUk9MRV9JTlNUUlVDVE9SLFJPTEVfVVNFUixST0xFX1NUVURFTlQiLCJleHAiOjE2OTI1MTc1ODUsImlhdCI6MTY5MjUwMzE4NX0.p2WRRSCZb9xkHr82kw4TmH4kZ5q5QAl55PQD_M5HWRKe3zhbFRRpBzgEsWT972oKKMlRinoL-bZ5iODh_s--8w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"notificationStatus\": \"READ\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/ead-notification-hex/api/notification/users/41ee1120-0f47-40e5-95ae-65b19ece7fb1/notifications/4a2e61a6-c7d8-41d3-b1aa-31aaa07463be",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"ead-notification-hex",
+						"api",
+						"notification",
+						"users",
+						"41ee1120-0f47-40e5-95ae-65b19ece7fb1",
+						"notifications",
+						"4a2e61a6-c7d8-41d3-b1aa-31aaa07463be"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"adminLogin\",\r\n    \"password\":\"adminLoginn\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ead-authuser/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-authuser",
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check notification online hex",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4YWJkNzIwNS0yNTc2LTRiODQtYjExNi0wZWVlNzc0MTQ5ZWQiLCJyb2xlcyI6IlJPTEVfQURNSU4sUk9MRV9JTlNUUlVDVE9SLFJPTEVfVVNFUixST0xFX1NUVURFTlQiLCJleHAiOjE2OTI1MTc1ODUsImlhdCI6MTY5MjUwMzE4NX0.p2WRRSCZb9xkHr82kw4TmH4kZ5q5QAl55PQD_M5HWRKe3zhbFRRpBzgEsWT972oKKMlRinoL-bZ5iODh_s--8w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8084/ead-notification-hex/api/notification",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"ead-notification-hex",
+						"api",
+						"notification"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,660 @@
+{
+	"info": {
+		"_postman_id": "37cb5284-a8ab-4969-bfea-35c802348043",
+		"name": "ead-microservices-course-prod",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11944393"
+	},
+	"item": [
+		{
+			"name": "salvar student",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"admin\",\r\n    \"email\":\"gabrielffguimaraes@gmail.com\",\r\n    \"password\":\"admin\",\r\n    \"fullName\":\"gabriel ferreira guimarães\",\r\n    \"phoneNumber\":\"21973550867\",\r\n    \"cpf\":\"15224280702\",\r\n    \"userType\":\"STUDENT\",\r\n    \"imageUrl\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-authuser/api/auth/signup",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-authuser",
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvar admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"adminLogin\",\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"adminLogin\",\r\n    \"fullName\":\"tesla da tamariano\",\r\n    \"phoneNumber\":\"21955465455\",\r\n    \"cpf\":\"07749788727\",\r\n    \"imageUrl\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-authuser/api/auth/signup/admin",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-authuser",
+						"api",
+						"auth",
+						"signup",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvar instructor",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"adminInstructor\",\r\n    \"email\":\"instructor@gmail.com\",\r\n    \"password\":\"adminInstructor\",\r\n    \"fullName\":\"carlos fernandes da cunha\",\r\n    \"phoneNumber\":\"21964106493\",\r\n    \"cpf\":\"25669495063\",\r\n    \"userType\":\"INSTRUCTOR\",\r\n    \"imageUrl\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-authuser/api/auth/signup",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-authuser",
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletar usuario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-authuser/api/users/1bb649b0-0015-4d78-b5ab-991eda55523e",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-authuser",
+						"api",
+						"users",
+						"1bb649b0-0015-4d78-b5ab-991eda55523e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update usuario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"adminTeste\",\r\n    \"email\":\"gabrielffguimaraes@gmail.commmmmm\",\r\n    \"fullName\":\"gabriel ferreira ramon\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-authuser/api/auth/e466284e-4114-4285-8acc-18755fb9d61a",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-authuser",
+						"api",
+						"auth",
+						"e466284e-4114-4285-8acc-18755fb9d61a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criar-curso",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyYWNkNWE3MC0yZDRiLTQ1ZDAtYmVlNC1hMTQ3NjczMzNjZTkiLCJyb2xlcyI6IlJPTEVfVVNFUiIsImV4cCI6MTY5MjM1MDI4OCwiaWF0IjoxNjkyMzM1ODg4fQ.VVfEDu50zQPpafLbk_gG75TqQmFtyPk9NxGkWnhIVrqazPeclL0Rour2_ePgKeoSfVyuR_rR7JE-Y7NnBAi3Cw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"course math\",\r\n    \"description\":\"description 1 course\",\r\n    \"imageUrl\":\"\",\r\n    \"courseStatus\":\"INPROGRESS\",\r\n    \"courseLevel\":\"BEGINNER\",\r\n    \"userInstructor\":\"2acd5a70-2d4b-45d0-bee4-a14767333ce9\"       \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-course/api/course",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-course",
+						"api",
+						"course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criar inscriçao",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\":\"de6110a0-b98f-41be-b2d2-e1d4b5e8491d\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-course/api/courseUser/courses/b0a8b7f7-1b3a-4e63-b3ba-cffd94d89f43/users/subscription",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-course",
+						"api",
+						"courseUser",
+						"courses",
+						"b0a8b7f7-1b3a-4e63-b3ba-cffd94d89f43",
+						"users",
+						"subscription"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar usuários de um curso",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyYWNkNWE3MC0yZDRiLTQ1ZDAtYmVlNC1hMTQ3NjczMzNjZTkiLCJyb2xlcyI6IlJPTEVfVVNFUiIsImV4cCI6MTY5MjM1MDI4OCwiaWF0IjoxNjkyMzM1ODg4fQ.VVfEDu50zQPpafLbk_gG75TqQmFtyPk9NxGkWnhIVrqazPeclL0Rour2_ePgKeoSfVyuR_rR7JE-Y7NnBAi3Cw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-course/api/courseUser/courses/b0a8b7f7-1b3a-4e63-b3ba-cffd94d89f43/users",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-course",
+						"api",
+						"courseUser",
+						"courses",
+						"b0a8b7f7-1b3a-4e63-b3ba-cffd94d89f43",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar cursos de um usuário",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyYWNkNWE3MC0yZDRiLTQ1ZDAtYmVlNC1hMTQ3NjczMzNjZTkiLCJyb2xlcyI6IlJPTEVfVVNFUiIsImV4cCI6MTY5MjM1MDI4OCwiaWF0IjoxNjkyMzM1ODg4fQ.VVfEDu50zQPpafLbk_gG75TqQmFtyPk9NxGkWnhIVrqazPeclL0Rour2_ePgKeoSfVyuR_rR7JE-Y7NnBAi3Cw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-authuser/api/users/de6110a0-b98f-41be-b2d2-e1d4b5e8491d/courses",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-authuser",
+						"api",
+						"users",
+						"de6110a0-b98f-41be-b2d2-e1d4b5e8491d",
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletar curso",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-course/api/course/9fbd4fce-2f1c-42eb-8e7d-a52c17ba06bf",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-course",
+						"api",
+						"course",
+						"9fbd4fce-2f1c-42eb-8e7d-a52c17ba06bf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar usuários",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwMjY0YzRjMi0zYTJiLTQ1ZGMtYjgyNS05N2M2NjZlZmRhMDciLCJyb2xlcyI6IlJPTEVfVVNFUixST0xFX0lOU1RSVUNUT1IiLCJleHAiOjE2OTEwOTkzMTQsImlhdCI6MTY5MTA4NDkxNH0.qus4P4TFcgUIskB9DPd2AF0brSTWC8q-l5fVutvoy_x1b4qPiPX82HKsZGzP3M-Z72FWx5UClg5Q2a43kj3pkA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ead-ga-authuser-prod-bce5704d64c7.herokuapp.com/ead-authuser/api/users",
+					"protocol": "https",
+					"host": [
+						"ead-ga-authuser-prod-bce5704d64c7",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-authuser",
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar cursos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1NTE3YTk5NS0yYjQ5LTQ5YmUtYmQ1MS00ZmU5NDZjY2M0NjciLCJyb2xlcyI6IlJPTEVfVVNFUixST0xFX0FETUlOLFJPTEVfU1RVREVOVCxST0xFX0lOU1RSVUNUT1IiLCJleHAiOjE2OTA4NzQ5MjMsImlhdCI6MTY5MDg2MDUyM30.eqoBm6Ltlb4r9oqOLjrf3xyHYCNEPZUvFfOEVCTYVoSosB6QjECcFkMgfSjDfrK2PkprU_QlqYV9GVbJ49jd9w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ead-course/api/course",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ead-course",
+						"api",
+						"course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config-server-list",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ead123cs",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "configserver",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/ead-authuser-service/main",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"ead-authuser-service",
+						"main"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refreshscope check updates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-authuser/api/refreshscope",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-authuser",
+						"api",
+						"refreshscope"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh token actuator",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-authuser/actuator/refresh",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-authuser",
+						"actuator",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar notifications",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyYWNkNWE3MC0yZDRiLTQ1ZDAtYmVlNC1hMTQ3NjczMzNjZTkiLCJyb2xlcyI6IlJPTEVfVVNFUiIsImV4cCI6MTY5MjM1MDI4OCwiaWF0IjoxNjkyMzM1ODg4fQ.VVfEDu50zQPpafLbk_gG75TqQmFtyPk9NxGkWnhIVrqazPeclL0Rour2_ePgKeoSfVyuR_rR7JE-Y7NnBAi3Cw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-notification/api/notification/users/de6110a0-b98f-41be-b2d2-e1d4b5e8491d",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-notification",
+						"api",
+						"notification",
+						"users",
+						"de6110a0-b98f-41be-b2d2-e1d4b5e8491d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update notification",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"notificationStatus\": \"READ\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-notification/api/notification/users/1bb649b0-0015-4d78-b5ab-991eda55523e/notifications/690ab82f-be00-4afa-9df8-bb06d1b49d51",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-notification",
+						"api",
+						"notification",
+						"users",
+						"1bb649b0-0015-4d78-b5ab-991eda55523e",
+						"notifications",
+						"690ab82f-be00-4afa-9df8-bb06d1b49d51"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"adminInstructor\",\r\n    \"password\":\"adminInstructor\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ead-ga-api-gateway-prod-16a54f5ae097.herokuapp.com/ead-authuser/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"ead-ga-api-gateway-prod-16a54f5ae097",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"ead-authuser",
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config server encrypt",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ead123cs",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "configserver",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "teste"
+				},
+				"url": {
+					"raw": "https://ead-ga-configserver-prod-74a163a0b5b7.herokuapp.com/decrypt?",
+					"protocol": "https",
+					"host": [
+						"ead-ga-configserver-prod-74a163a0b5b7",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"decrypt"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "config server decrypt",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://ead-ga-configserver-prod-74a163a0b5b7.herokuapp.com/decrypt?",
+					"protocol": "https",
+					"host": [
+						"ead-ga-configserver-prod-74a163a0b5b7",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"decrypt"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
